@@ -14,16 +14,19 @@ export default async function ProjectsPage() {
 
   return (
     <PublicLayout>
-      <section className="container-page py-12">
-        <h1 className="text-3xl font-bold">Projects</h1>
-        <p className="mt-2 text-slate-500">A collection of recent work.</p>
+      <section className="container-page section">
+        <p className="eyebrow">Work</p>
+        <h1 className="mt-1 text-3xl font-semibold tracking-tighter sm:text-4xl">Projects</h1>
+        <p className="mt-2 max-w-2xl text-base muted">
+          A collection of recent work — open source, client projects, and experiments.
+        </p>
 
         {projects.length === 0 ? (
           <div className="mt-8">
             <EmptyState title="No projects yet" description="Projects will appear here once published." />
           </div>
         ) : (
-          <div className="mt-8 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
+          <div className="mt-10 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
             {projects.map((p) => <ProjectCard key={p.id} project={p} />)}
           </div>
         )}

@@ -36,6 +36,7 @@ class CertificateController extends Controller
         return $request->validate([
             'title' => [$partial ? 'sometimes' : 'required', 'string', 'max:200'],
             'issuer' => ['nullable', 'string', 'max:200'],
+            'description' => ['nullable', 'string'],
             'issue_date' => ['nullable', 'date'],
             'certificate_url' => ['nullable', 'url'],
             'image_url' => ['nullable', 'url'],

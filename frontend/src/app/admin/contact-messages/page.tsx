@@ -5,7 +5,9 @@ import { apiClient } from '@/lib/api';
 import type { ContactMessage } from '@/lib/types';
 import { PageLoading, ErrorState, EmptyState } from '@/components/Loading';
 import { ConfirmDelete } from '@/components/Modal';
+import { PageHeader } from '@/components/admin/Breadcrumbs';
 import { formatDate } from '@/lib/utils';
+import { classNames } from '@/lib/utils';
 
 export default function AdminMessagesPage() {
   const [items, setItems] = useState<ContactMessage[]>([]);
@@ -42,34 +44,45 @@ export default function AdminMessagesPage() {
   if (loading) return <PageLoading />;
   if (error) return <ErrorState message={error} onRetry={load} />;
 
+  const unread = items.filter((m) => !m.is_read).length;
+
   return (
     <div>
-      <h1 className="mb-4 text-2xl font-bold">Contact messages</h1>
+      <PageHeader
+        breadcrumbs={[{ label: 'Admin', href: '/admin/dashboard' }, { label: 'Messages' }]}
+        title="Contact messages"
+        subtitle={`${unread} unread of ${items.length} total`}
+      />
+
       {items.length === 0 ? (
-        <EmptyState title="No messages yet" />
+        <EmptyState title="No messages yet" description="Submissions from the public contact form will show up here." />
       ) : (
         <div className="space-y-3">
           {items.map((m) => (
-            <div key={m.id} className={`card ${m.is_read ? '' : 'border-brand-500/50'}`}>
-              <div className="flex flex-wrap items-center justify-between gap-2">
-                <div>
-                  <p className="font-medium">
-                    {m.name} {!m.is_read && <span className="badge ml-2">new</span>}
+            <article key={m.id} className={classNames('card', !m.is_read && 'ring-1 ring-brand-500/40')}>
+              <header className="flex flex-wrap items-start justify-between gap-3">
+                <div className="min-w-0">
+                  <div className="flex items-center gap-2 flex-wrap">
+                    <p className="font-medium text-slate-900 dark:text-slate-100">{m.name}</p>
+                    {!m.is_read && <span className="badge-brand">New</span>}
+                  </div>
+                  <p className="mt-0.5 text-xs muted-2 break-all">
+                    {m.email} · {formatDate(m.created_at, { dateStyle: 'medium', timeStyle: 'short' })}
                   </p>
-                  <p className="text-xs text-slate-500">{m.email} · {formatDate(m.created_at, { dateStyle: 'medium', timeStyle: 'short' })}</p>
-                  {m.subject && <p className="text-sm font-medium mt-1">{m.subject}</p>}
+                  {m.subject && <p className="mt-1 text-sm font-medium">{m.subject}</p>}
                 </div>
-                <div className="flex gap-2 text-sm">
-                  <button className="btn-secondary" onClick={() => toggleRead(m)}>{m.is_read ? 'Mark unread' : 'Mark read'}</button>
-                  <a className="btn-secondary" href={`mailto:${m.email}`}>Reply</a>
-                  <button className="btn-danger" onClick={() => setDeleteId(m.id)}>Delete</button>
+                <div className="flex flex-wrap gap-2 text-sm">
+                  <button className="btn-secondary !h-9 !py-0" onClick={() => toggleRead(m)}>{m.is_read ? 'Mark unread' : 'Mark read'}</button>
+                  <a className="btn-secondary !h-9 !py-0" href={`mailto:${m.email}`}>Reply</a>
+                  <button className="btn-danger !h-9 !py-0" onClick={() => setDeleteId(m.id)}>Delete</button>
                 </div>
-              </div>
-              <p className="mt-2 whitespace-pre-line text-sm">{m.message}</p>
-            </div>
+              </header>
+              <p className="mt-3 whitespace-pre-line text-sm leading-relaxed text-slate-800 dark:text-slate-200">{m.message}</p>
+            </article>
           ))}
         </div>
       )}
+
       <ConfirmDelete open={deleteId !== null} onClose={() => setDeleteId(null)} onConfirm={onDelete} busy={busy} label="Delete this message?" />
     </div>
   );

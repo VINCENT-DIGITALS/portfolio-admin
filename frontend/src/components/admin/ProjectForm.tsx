@@ -4,6 +4,8 @@ import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { apiClient, ApiError } from '@/lib/api';
 import { Field, Input, Textarea, Select } from '@/components/Field';
+import { Spinner } from '@/components/Loading';
+import { BannerUpload } from '@/components/admin/BannerUpload';
 import type { Project } from '@/lib/types';
 
 type FormValues = Partial<Project> & { tech_stack_input?: string };
@@ -63,72 +65,93 @@ export function ProjectForm({ initial, mode }: { initial?: Project; mode: 'creat
   }
 
   return (
-    <form onSubmit={onSubmit} className="card max-w-3xl">
-      {serverError && <div className="mb-3 rounded-lg bg-red-50 px-3 py-2 text-sm text-red-700 dark:bg-red-950/40 dark:text-red-200">{serverError}</div>}
+    <form onSubmit={onSubmit} className="space-y-6 max-w-3xl">
+      {serverError && (
+        <div className="rounded-lg border border-red-200 bg-red-50 px-3 py-2 text-sm text-red-800 dark:border-red-900/40 dark:bg-red-950/40 dark:text-red-200">
+          {serverError}
+        </div>
+      )}
 
-      <div className="grid grid-cols-1 gap-x-4 md:grid-cols-2">
-        <Field label="Title" error={errors.title?.[0]}>
-          <Input value={form.title ?? ''} onChange={(e) => set('title', e.target.value)} required />
+      <section className="card">
+        <h2 className="text-base font-semibold tracking-tight">Basics</h2>
+        <div className="mt-4 grid grid-cols-1 gap-x-4 sm:grid-cols-2">
+          <Field label="Title" error={errors.title?.[0]}>
+            <Input value={form.title ?? ''} onChange={(e) => set('title', e.target.value)} required />
+          </Field>
+          <Field label="Slug" error={errors.slug?.[0]} hint="Auto-generated from title if blank.">
+            <Input value={form.slug ?? ''} onChange={(e) => set('slug', e.target.value)} />
+          </Field>
+        </div>
+        <Field label="Short description" error={errors.short_description?.[0]}>
+          <Textarea value={form.short_description ?? ''} onChange={(e) => set('short_description', e.target.value)} />
         </Field>
-        <Field label="Slug (optional)" error={errors.slug?.[0]} hint="Auto-generated if blank.">
-          <Input value={form.slug ?? ''} onChange={(e) => set('slug', e.target.value)} />
+        <Field label="Full description" error={errors.full_description?.[0]}>
+          <Textarea rows={8} value={form.full_description ?? ''} onChange={(e) => set('full_description', e.target.value)} />
         </Field>
-      </div>
+      </section>
 
-      <Field label="Short description" error={errors.short_description?.[0]}>
-        <Textarea value={form.short_description ?? ''} onChange={(e) => set('short_description', e.target.value)} />
-      </Field>
+      <section className="card">
+        <h2 className="text-base font-semibold tracking-tight">Details</h2>
+        <div className="mt-4 grid grid-cols-1 gap-x-4 sm:grid-cols-3">
+          <Field label="Category">
+            <Input value={form.category ?? ''} onChange={(e) => set('category', e.target.value)} />
+          </Field>
+          <Field label="Status">
+            <Select value={form.status ?? ''} onChange={(e) => set('status', e.target.value)}>
+              <option value="completed">Completed</option>
+              <option value="in-progress">In progress</option>
+              <option value="paused">Paused</option>
+            </Select>
+          </Field>
+          <Field label="Role">
+            <Input value={form.role ?? ''} onChange={(e) => set('role', e.target.value)} />
+          </Field>
+        </div>
+        <div className="grid grid-cols-1 gap-x-4 sm:grid-cols-2">
+          <Field label="Start date"><Input type="date" value={form.start_date ?? ''} onChange={(e) => set('start_date', e.target.value)} /></Field>
+          <Field label="End date"><Input type="date" value={form.end_date ?? ''} onChange={(e) => set('end_date', e.target.value)} /></Field>
+        </div>
+      </section>
 
-      <Field label="Full description" error={errors.full_description?.[0]}>
-        <Textarea rows={8} value={form.full_description ?? ''} onChange={(e) => set('full_description', e.target.value)} />
-      </Field>
-
-      <div className="grid grid-cols-1 gap-x-4 md:grid-cols-3">
-        <Field label="Category">
-          <Input value={form.category ?? ''} onChange={(e) => set('category', e.target.value)} />
+      <section className="card">
+        <h2 className="text-base font-semibold tracking-tight">Links & media</h2>
+        <div className="mt-4 grid grid-cols-1 gap-x-4 sm:grid-cols-2">
+          <Field label="GitHub URL" error={errors.github_url?.[0]}><Input type="url" value={form.github_url ?? ''} onChange={(e) => set('github_url', e.target.value)} /></Field>
+          <Field label="Live demo URL" error={errors.live_demo_url?.[0]}><Input type="url" value={form.live_demo_url ?? ''} onChange={(e) => set('live_demo_url', e.target.value)} /></Field>
+        </div>
+        <BannerUpload
+          value={form.featured_image_url ?? null}
+          onChange={(url) => set('featured_image_url', url ?? '')}
+          hint="Uploaded to your Supabase Storage bucket under /projects."
+        />
+        {errors.featured_image_url?.[0] && (
+          <p className="-mt-3 mb-4 text-xs text-red-600 dark:text-red-400">{errors.featured_image_url[0]}</p>
+        )}
+        <Field label="Tech stack" hint="Comma separated, e.g. Next.js, Laravel, Postgres">
+          <Input value={form.tech_stack_input ?? ''} onChange={(e) => set('tech_stack_input', e.target.value)} />
         </Field>
-        <Field label="Status">
-          <Select value={form.status ?? ''} onChange={(e) => set('status', e.target.value)}>
-            <option value="completed">Completed</option>
-            <option value="in-progress">In progress</option>
-            <option value="paused">Paused</option>
-          </Select>
-        </Field>
-        <Field label="Role">
-          <Input value={form.role ?? ''} onChange={(e) => set('role', e.target.value)} />
-        </Field>
-      </div>
+      </section>
 
-      <div className="grid grid-cols-1 gap-x-4 md:grid-cols-2">
-        <Field label="Start date"><Input type="date" value={form.start_date ?? ''} onChange={(e) => set('start_date', e.target.value)} /></Field>
-        <Field label="End date"><Input type="date" value={form.end_date ?? ''} onChange={(e) => set('end_date', e.target.value)} /></Field>
-      </div>
+      <section className="card">
+        <h2 className="text-base font-semibold tracking-tight">Visibility</h2>
+        <div className="mt-4 grid grid-cols-1 gap-4 sm:grid-cols-3">
+          <label className="flex items-center gap-2 text-sm">
+            <input type="checkbox" className="h-4 w-4 rounded border-slate-300 text-brand-600 focus:ring-brand-500" checked={!!form.is_featured} onChange={(e) => set('is_featured', e.target.checked)} />
+            <span>Featured</span>
+          </label>
+          <label className="flex items-center gap-2 text-sm">
+            <input type="checkbox" className="h-4 w-4 rounded border-slate-300 text-brand-600 focus:ring-brand-500" checked={!!form.is_published} onChange={(e) => set('is_published', e.target.checked)} />
+            <span>Published</span>
+          </label>
+          <Field label="Sort order" className="mb-0"><Input type="number" value={form.sort_order ?? 0} onChange={(e) => set('sort_order', Number(e.target.value))} /></Field>
+        </div>
+      </section>
 
-      <div className="grid grid-cols-1 gap-x-4 md:grid-cols-2">
-        <Field label="GitHub URL" error={errors.github_url?.[0]}><Input type="url" value={form.github_url ?? ''} onChange={(e) => set('github_url', e.target.value)} /></Field>
-        <Field label="Live demo URL" error={errors.live_demo_url?.[0]}><Input type="url" value={form.live_demo_url ?? ''} onChange={(e) => set('live_demo_url', e.target.value)} /></Field>
-      </div>
-
-      <Field label="Featured image URL" error={errors.featured_image_url?.[0]}>
-        <Input type="url" value={form.featured_image_url ?? ''} onChange={(e) => set('featured_image_url', e.target.value)} placeholder="Paste from Media library or Supabase Storage" />
-      </Field>
-
-      <Field label="Tech stack (comma separated)">
-        <Input value={form.tech_stack_input ?? ''} onChange={(e) => set('tech_stack_input', e.target.value)} placeholder="Next.js, Laravel, Postgres" />
-      </Field>
-
-      <div className="grid grid-cols-1 gap-4 md:grid-cols-3">
-        <label className="flex items-center gap-2 text-sm">
-          <input type="checkbox" checked={!!form.is_featured} onChange={(e) => set('is_featured', e.target.checked)} /> Featured
-        </label>
-        <label className="flex items-center gap-2 text-sm">
-          <input type="checkbox" checked={!!form.is_published} onChange={(e) => set('is_published', e.target.checked)} /> Published
-        </label>
-        <Field label="Sort order"><Input type="number" value={form.sort_order ?? 0} onChange={(e) => set('sort_order', Number(e.target.value))} /></Field>
-      </div>
-
-      <div className="mt-4 flex gap-2">
-        <button type="submit" className="btn-primary" disabled={busy}>{busy ? 'Saving…' : 'Save project'}</button>
+      <div className="flex flex-wrap gap-2">
+        <button type="submit" className="btn-primary" disabled={busy}>
+          {busy && <Spinner />}
+          {busy ? 'Saving…' : 'Save project'}
+        </button>
         <button type="button" className="btn-secondary" onClick={() => router.back()}>Cancel</button>
       </div>
     </form>

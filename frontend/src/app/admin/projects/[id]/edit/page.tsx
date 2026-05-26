@@ -6,6 +6,7 @@ import { apiClient } from '@/lib/api';
 import type { Project } from '@/lib/types';
 import { ProjectForm } from '@/components/admin/ProjectForm';
 import { PageLoading, ErrorState } from '@/components/Loading';
+import { PageHeader } from '@/components/admin/Breadcrumbs';
 
 export default function EditProjectPage() {
   const params = useParams<{ id: string }>();
@@ -27,7 +28,14 @@ export default function EditProjectPage() {
 
   return (
     <div>
-      <h1 className="mb-4 text-2xl font-bold">Edit project</h1>
+      <PageHeader
+        breadcrumbs={[
+          { label: 'Admin', href: '/admin/dashboard' },
+          { label: 'Projects', href: '/admin/projects' },
+          { label: project.title },
+        ]}
+        title="Edit project"
+      />
       <ProjectForm initial={project} mode="edit" />
     </div>
   );

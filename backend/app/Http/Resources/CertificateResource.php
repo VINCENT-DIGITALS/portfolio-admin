@@ -12,6 +12,7 @@ class CertificateResource extends JsonResource
             'id' => $this->id,
             'title' => $this->title,
             'issuer' => $this->issuer,
+            'description' => $this->description,
             'issue_date' => $this->issue_date?->toDateString(),
             'certificate_url' => $this->certificate_url,
             'image_url' => $this->image_url,

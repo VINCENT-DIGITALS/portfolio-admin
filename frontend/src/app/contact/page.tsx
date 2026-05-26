@@ -13,19 +13,39 @@ export default async function ContactPage() {
 
   return (
     <PublicLayout>
-      <section className="container-page py-12 grid gap-10 lg:grid-cols-2">
+      <section className="container-page section grid gap-10 lg:grid-cols-2 lg:gap-16">
         <div>
-          <h1 className="text-3xl font-bold">Get in touch</h1>
-          <p className="mt-2 text-slate-600 dark:text-slate-400">Have a project or want to chat? Send a message and I'll reply within a few days.</p>
-          <ul className="mt-6 space-y-2 text-sm">
-            {profile?.email && <li><span className="font-medium">Email:</span> <a className="text-brand-600 hover:underline" href={`mailto:${profile.email}`}>{profile.email}</a></li>}
-            {profile?.phone && <li><span className="font-medium">Phone:</span> {profile.phone}</li>}
-            {profile?.location && <li><span className="font-medium">Location:</span> {profile.location}</li>}
-          </ul>
-          <div className="mt-4 flex gap-3 text-sm">
-            {profile?.github_url && <a className="text-brand-600 hover:underline" href={profile.github_url} target="_blank" rel="noreferrer">GitHub</a>}
-            {profile?.linkedin_url && <a className="text-brand-600 hover:underline" href={profile.linkedin_url} target="_blank" rel="noreferrer">LinkedIn</a>}
-            {profile?.portfolio_url && <a className="text-brand-600 hover:underline" href={profile.portfolio_url} target="_blank" rel="noreferrer">Website</a>}
+          <p className="eyebrow">Contact</p>
+          <h1 className="mt-1 text-3xl font-semibold tracking-tighter sm:text-4xl">Get in touch</h1>
+          <p className="mt-3 max-w-md text-base muted">
+            Have a project or want to chat? Send a message and I&apos;ll reply within a few days.
+          </p>
+
+          <dl className="mt-8 space-y-3 text-sm">
+            {profile?.email && (
+              <div className="flex items-start gap-3">
+                <dt className="w-20 shrink-0 font-medium text-slate-900 dark:text-slate-100">Email</dt>
+                <dd><a className="text-brand-700 hover:underline dark:text-brand-300 break-all" href={`mailto:${profile.email}`}>{profile.email}</a></dd>
+              </div>
+            )}
+            {profile?.phone && (
+              <div className="flex items-start gap-3">
+                <dt className="w-20 shrink-0 font-medium text-slate-900 dark:text-slate-100">Phone</dt>
+                <dd className="muted">{profile.phone}</dd>
+              </div>
+            )}
+            {profile?.location && (
+              <div className="flex items-start gap-3">
+                <dt className="w-20 shrink-0 font-medium text-slate-900 dark:text-slate-100">Location</dt>
+                <dd className="muted">{profile.location}</dd>
+              </div>
+            )}
+          </dl>
+
+          <div className="mt-6 flex flex-wrap gap-2">
+            {profile?.github_url && <a className="btn-ghost" href={profile.github_url} target="_blank" rel="noreferrer">GitHub</a>}
+            {profile?.linkedin_url && <a className="btn-ghost" href={profile.linkedin_url} target="_blank" rel="noreferrer">LinkedIn</a>}
+            {profile?.portfolio_url && <a className="btn-ghost" href={profile.portfolio_url} target="_blank" rel="noreferrer">Website</a>}
           </div>
         </div>
 

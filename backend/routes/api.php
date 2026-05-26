@@ -25,6 +25,13 @@ use App\Http\Controllers\Api\SkillController;
 use App\Http\Controllers\Auth\AuthController;
 use Illuminate\Support\Facades\Route;
 
+/* Admin routes reference projects/blogs by numeric id, while public routes
+ * use their slugs. Override the implicit route-model binding so {project}
+ * and {blog} are resolved by id (the public routes use a raw {slug} segment
+ * so this binding doesn't conflict with them). */
+Route::bind('project', fn ($value) => \App\Models\Project::findOrFail($value));
+Route::bind('blog', fn ($value) => \App\Models\Blog::findOrFail($value));
+
 /* -------- Public -------- */
 Route::get('/public-settings', [PublicSettingsController::class, 'index']);
 Route::get('/profile', [ProfileController::class, 'show']);

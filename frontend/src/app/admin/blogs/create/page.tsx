@@ -1,10 +1,18 @@
 'use client';
 import { BlogForm } from '@/components/admin/BlogForm';
+import { PageHeader } from '@/components/admin/Breadcrumbs';
 
 export default function CreateBlogPage() {
   return (
     <div>
-      <h1 className="mb-4 text-2xl font-bold">New post</h1>
+      <PageHeader
+        breadcrumbs={[
+          { label: 'Admin', href: '/admin/dashboard' },
+          { label: 'Blogs', href: '/admin/blogs' },
+          { label: 'New' },
+        ]}
+        title="New post"
+      />
       <BlogForm mode="create" />
     </div>
   );

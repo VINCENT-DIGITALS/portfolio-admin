@@ -90,6 +90,7 @@ export interface Certificate {
   id: number;
   title: string;
   issuer: string | null;
+  description: string | null;
   issue_date: string | null;
   certificate_url: string | null;
   image_url: string | null;

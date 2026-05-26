@@ -5,6 +5,8 @@ import { apiClient } from '@/lib/api';
 import type { Comment, CommentStatus } from '@/lib/types';
 import { PageLoading, ErrorState, EmptyState } from '@/components/Loading';
 import { ConfirmDelete } from '@/components/Modal';
+import { PageHeader } from '@/components/admin/Breadcrumbs';
+import { classNames } from '@/lib/utils';
 import { formatDate } from '@/lib/utils';
 
 const STATUSES: CommentStatus[] = ['pending', 'approved', 'rejected'];
@@ -45,40 +47,62 @@ export default function AdminCommentsPage() {
   if (loading) return <PageLoading />;
   if (error) return <ErrorState message={error} onRetry={load} />;
 
+  const filterTabs = [{ k: '', l: 'All' }, ...STATUSES.map((s) => ({ k: s, l: s.charAt(0).toUpperCase() + s.slice(1) }))];
+
   return (
     <div>
-      <div className="mb-4 flex flex-wrap items-center justify-between gap-2">
-        <h1 className="text-2xl font-bold">Comments</h1>
-        <div className="flex gap-2 text-sm">
-          <button className={`btn-secondary ${!filter ? '!bg-brand-600 !text-white' : ''}`} onClick={() => setFilter('')}>All</button>
-          {STATUSES.map((s) => (
-            <button key={s} className={`btn-secondary ${filter === s ? '!bg-brand-600 !text-white' : ''}`} onClick={() => setFilter(s)}>
-              {s}
-            </button>
-          ))}
-        </div>
-      </div>
+      <PageHeader
+        breadcrumbs={[{ label: 'Admin', href: '/admin/dashboard' }, { label: 'Comments' }]}
+        title="Comments"
+        subtitle="Approve or reject visitor comments before they go public."
+        actions={(
+          <div className="inline-flex rounded-lg border border-slate-200 bg-white p-0.5 text-xs dark:border-slate-800 dark:bg-slate-900">
+            {filterTabs.map((opt) => (
+              <button
+                key={opt.k || 'all'}
+                onClick={() => setFilter(opt.k as '' | CommentStatus)}
+                className={classNames(
+                  'rounded-md px-3 py-1.5 font-medium transition',
+                  filter === opt.k
+                    ? 'bg-brand-600 text-white dark:bg-brand-500 dark:text-slate-950'
+                    : 'text-slate-600 hover:bg-slate-100 dark:text-slate-300 dark:hover:bg-slate-800',
+                )}
+              >
+                {opt.l}
+              </button>
+            ))}
+          </div>
+        )}
+      />
 
       {items.length === 0 ? (
-        <EmptyState title="No comments" />
+        <EmptyState title="No comments" description={filter ? `No "${filter}" comments yet.` : 'Visitor comments will show up here.'} />
       ) : (
         <div className="space-y-3">
           {items.map((c) => (
-            <div key={c.id} className="card">
-              <div className="flex flex-wrap items-center justify-between gap-2">
+            <article key={c.id} className="card">
+              <header className="flex flex-wrap items-start justify-between gap-3">
                 <div>
-                  <p className="font-medium">{c.name} <span className="badge ml-2">{c.status}</span></p>
-                  <p className="text-xs text-slate-500">{c.email} · {formatDate(c.created_at, { dateStyle: 'medium', timeStyle: 'short' })}</p>
+                  <div className="flex items-center gap-2">
+                    <p className="font-medium text-slate-900 dark:text-slate-100">{c.name}</p>
+                    <span className={
+                      c.status === 'approved' ? 'badge-emerald' :
+                      c.status === 'rejected' ? 'badge-red' : 'badge-amber'
+                    }>{c.status}</span>
+                  </div>
+                  <p className="mt-0.5 text-xs muted-2 break-all">
+                    {c.email ?? '—'} · {formatDate(c.created_at, { dateStyle: 'medium', timeStyle: 'short' })}
+                  </p>
                 </div>
-                <div className="flex gap-2 text-sm">
-                  {c.status !== 'approved' && <button className="btn-secondary" onClick={() => setStatus(c.id, 'approved')}>Approve</button>}
-                  {c.status !== 'rejected' && <button className="btn-secondary" onClick={() => setStatus(c.id, 'rejected')}>Reject</button>}
-                  {c.status !== 'pending' && <button className="btn-secondary" onClick={() => setStatus(c.id, 'pending')}>Re-queue</button>}
-                  <button className="btn-danger" onClick={() => setDeleteId(c.id)}>Delete</button>
+                <div className="flex flex-wrap gap-2 text-sm">
+                  {c.status !== 'approved' && <button className="btn-secondary !h-9 !py-0" onClick={() => setStatus(c.id, 'approved')}>Approve</button>}
+                  {c.status !== 'rejected' && <button className="btn-secondary !h-9 !py-0" onClick={() => setStatus(c.id, 'rejected')}>Reject</button>}
+                  {c.status !== 'pending' && <button className="btn-secondary !h-9 !py-0" onClick={() => setStatus(c.id, 'pending')}>Re-queue</button>}
+                  <button className="btn-danger !h-9 !py-0" onClick={() => setDeleteId(c.id)}>Delete</button>
                 </div>
-              </div>
-              <p className="mt-2 text-sm">{c.message}</p>
-            </div>
+              </header>
+              <p className="mt-3 text-sm leading-relaxed text-slate-800 dark:text-slate-200">{c.message}</p>
+            </article>
           ))}
         </div>
       )}

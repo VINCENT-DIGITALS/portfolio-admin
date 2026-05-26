@@ -6,6 +6,7 @@ import { apiClient } from '@/lib/api';
 import type { Blog } from '@/lib/types';
 import { BlogForm } from '@/components/admin/BlogForm';
 import { PageLoading, ErrorState } from '@/components/Loading';
+import { PageHeader } from '@/components/admin/Breadcrumbs';
 
 export default function EditBlogPage() {
   const params = useParams<{ id: string }>();
@@ -27,7 +28,14 @@ export default function EditBlogPage() {
 
   return (
     <div>
-      <h1 className="mb-4 text-2xl font-bold">Edit post</h1>
+      <PageHeader
+        breadcrumbs={[
+          { label: 'Admin', href: '/admin/dashboard' },
+          { label: 'Blogs', href: '/admin/blogs' },
+          { label: blog.title },
+        ]}
+        title="Edit post"
+      />
       <BlogForm initial={blog} mode="edit" />
     </div>
   );

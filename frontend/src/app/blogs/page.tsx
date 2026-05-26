@@ -14,13 +14,15 @@ export default async function BlogsPage() {
 
   return (
     <PublicLayout>
-      <section className="container-page py-12">
-        <h1 className="text-3xl font-bold">Writing</h1>
-        <p className="mt-2 text-slate-500">Articles, tutorials and notes.</p>
+      <section className="container-page section">
+        <p className="eyebrow">Writing</p>
+        <h1 className="mt-1 text-3xl font-semibold tracking-tighter sm:text-4xl">Articles & notes</h1>
+        <p className="mt-2 max-w-2xl text-base muted">Tutorials, deep-dives, and short notes from things I&apos;m learning.</p>
+
         {blogs.length === 0 ? (
           <div className="mt-8"><EmptyState title="No posts yet" description="New articles will show up here." /></div>
         ) : (
-          <div className="mt-8 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
+          <div className="mt-10 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
             {blogs.map((b) => <BlogCard key={b.id} blog={b} />)}
           </div>
         )}

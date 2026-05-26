@@ -23,21 +23,34 @@ export default async function BlogDetail({ params }: Props) {
 
   return (
     <PublicLayout>
-      <article className="container-page py-12 max-w-3xl">
-        <Link href="/blogs" className="text-sm text-brand-600 hover:underline">← All posts</Link>
-        <h1 className="mt-3 text-3xl font-bold">{blog.title}</h1>
-        <p className="mt-2 text-sm text-slate-500">{formatDate(blog.published_at, { dateStyle: 'long' })}</p>
+      <article className="container-read section">
+        <Link href="/blogs" className="text-xs font-medium text-brand-700 hover:underline dark:text-brand-300">
+          ← All posts
+        </Link>
+
+        <header className="mt-4">
+          <p className="text-xs muted-2">{formatDate(blog.published_at, { dateStyle: 'long' })}</p>
+          <h1 className="mt-2 text-3xl font-semibold tracking-tighter sm:text-4xl">{blog.title}</h1>
+          {blog.excerpt && <p className="mt-3 text-base muted">{blog.excerpt}</p>}
+        </header>
+
         {blog.cover_image_url && (
           // eslint-disable-next-line @next/next/no-img-element
-          <img src={blog.cover_image_url} alt={blog.title} className="mt-6 w-full rounded-xl object-cover" />
+          <img
+            src={blog.cover_image_url}
+            alt={blog.title}
+            className="mt-8 w-full rounded-2xl object-cover ring-1 ring-slate-200 dark:ring-slate-800"
+          />
         )}
+
         {blog.content && (
-          <div className="prose dark:prose-invert mt-6 max-w-none whitespace-pre-line text-slate-700 dark:text-slate-300">
+          <div className="mt-8 whitespace-pre-line text-base leading-[1.75] text-slate-800 dark:text-slate-200">
             {blog.content}
           </div>
         )}
+
         {blog.tags?.length > 0 && (
-          <div className="mt-8 flex flex-wrap gap-1.5">
+          <div className="mt-10 flex flex-wrap gap-1.5 hr-soft border-t pt-6">
             {blog.tags.map((t) => <span key={t} className="badge">#{t}</span>)}
           </div>
         )}

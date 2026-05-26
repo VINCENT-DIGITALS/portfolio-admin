@@ -6,6 +6,7 @@ import { apiClient } from '@/lib/api';
 import type { Project } from '@/lib/types';
 import { PageLoading, ErrorState, EmptyState } from '@/components/Loading';
 import { ConfirmDelete } from '@/components/Modal';
+import { PageHeader } from '@/components/admin/Breadcrumbs';
 
 export default function AdminProjectsPage() {
   const [items, setItems] = useState<Project[]>([]);
@@ -38,40 +39,53 @@ export default function AdminProjectsPage() {
 
   return (
     <div>
-      <div className="mb-4 flex items-center justify-between">
-        <h1 className="text-2xl font-bold">Projects</h1>
-        <Link href="/admin/projects/create" className="btn-primary">+ New project</Link>
-      </div>
+      <PageHeader
+        breadcrumbs={[{ label: 'Admin', href: '/admin/dashboard' }, { label: 'Projects' }]}
+        title="Projects"
+        subtitle="Manage portfolio entries."
+        actions={<Link href="/admin/projects/create" className="btn-primary">+ New project</Link>}
+      />
+
       {items.length === 0 ? (
-        <EmptyState title="No projects yet" description="Create your first project to get started."
-          action={<Link href="/admin/projects/create" className="btn-primary">+ Create project</Link>} />
+        <EmptyState
+          title="No projects yet"
+          description="Create your first project to populate the portfolio."
+          action={<Link href="/admin/projects/create" className="btn-primary">+ Create project</Link>}
+        />
       ) : (
-        <div className="card overflow-x-auto p-0">
-          <table className="table">
-            <thead>
-              <tr>
-                <th>Title</th><th>Status</th><th>Featured</th><th>Published</th><th>Order</th><th></th>
-              </tr>
-            </thead>
-            <tbody className="divide-y divide-slate-200 dark:divide-slate-800">
-              {items.map((p) => (
-                <tr key={p.id}>
-                  <td>
-                    <div className="font-medium">{p.title}</div>
-                    <div className="text-xs text-slate-500">{p.slug}</div>
-                  </td>
-                  <td>{p.status}</td>
-                  <td>{p.is_featured ? 'Yes' : '—'}</td>
-                  <td>{p.is_published ? 'Yes' : 'Draft'}</td>
-                  <td>{p.sort_order}</td>
-                  <td className="text-right">
-                    <Link className="text-brand-600 hover:underline" href={`/admin/projects/${p.id}/edit`}>Edit</Link>
-                    <button className="ml-3 text-red-600 hover:underline" onClick={() => setDeleteId(p.id)}>Delete</button>
-                  </td>
+        <div className="panel !p-0 overflow-hidden">
+          <div className="scroll-x">
+            <table className="table">
+              <thead>
+                <tr>
+                  <th>Title</th>
+                  <th>Status</th>
+                  <th>Featured</th>
+                  <th>Published</th>
+                  <th>Order</th>
+                  <th className="text-right">Actions</th>
                 </tr>
-              ))}
-            </tbody>
-          </table>
+              </thead>
+              <tbody>
+                {items.map((p) => (
+                  <tr key={p.id} className="hover:bg-slate-50/60 dark:hover:bg-slate-800/40">
+                    <td>
+                      <div className="font-medium text-slate-900 dark:text-slate-100">{p.title}</div>
+                      <div className="text-xs muted-2">/{p.slug}</div>
+                    </td>
+                    <td><span className="badge">{p.status}</span></td>
+                    <td>{p.is_featured ? <span className="badge-brand">Yes</span> : <span className="muted-2 text-xs">—</span>}</td>
+                    <td>{p.is_published ? <span className="badge-emerald">Published</span> : <span className="badge-amber">Draft</span>}</td>
+                    <td className="muted-2">{p.sort_order}</td>
+                    <td className="text-right whitespace-nowrap">
+                      <Link className="text-sm font-medium text-brand-700 hover:underline dark:text-brand-300" href={`/admin/projects/${p.id}/edit`}>Edit</Link>
+                      <button className="ml-3 text-sm font-medium text-red-600 hover:underline dark:text-red-400" onClick={() => setDeleteId(p.id)}>Delete</button>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
         </div>
       )}
 

@@ -6,14 +6,21 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreCommentRequest;
 use App\Http\Resources\CommentResource;
 use App\Models\Comment;
+use Illuminate\Http\Request;
 
 class CommentController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        return CommentResource::collection(
-            Comment::query()->where('status', Comment::STATUS_APPROVED)->latest()->get()
-        );
+        $query = Comment::query()->where('status', Comment::STATUS_APPROVED);
+
+        if ($request->filled('project_id')) {
+            $query->where('project_id', (int) $request->input('project_id'));
+        } elseif ($request->boolean('general_only')) {
+            $query->whereNull('project_id');
+        }
+
+        return CommentResource::collection($query->latest()->get());
     }
 
     public function store(StoreCommentRequest $request)
