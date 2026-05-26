@@ -153,3 +153,30 @@ export interface DashboardData {
 
 export interface ListResponse<T> { data: T[] }
 export interface ItemResponse<T> { data: T }
+
+export interface PublicSiteSettings {
+  site_title: string;
+  site_tagline: string;
+  theme: string;
+  comments_open: boolean;
+  maintenance_mode: boolean;
+  maintenance_message: string;
+  nav: {
+    home: boolean;
+    about: boolean;
+    projects: boolean;
+    blogs: boolean;
+    comments: boolean;
+    contact: boolean;
+  };
+}
+
+export const DEFAULT_PUBLIC_SETTINGS: PublicSiteSettings = {
+  site_title: 'My Portfolio',
+  site_tagline: '',
+  theme: 'system',
+  comments_open: true,
+  maintenance_mode: false,
+  maintenance_message: 'The site is currently undergoing maintenance. Please check back soon.',
+  nav: { home: true, about: true, projects: true, blogs: true, comments: true, contact: true },
+};

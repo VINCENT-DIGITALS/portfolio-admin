@@ -4,7 +4,7 @@ import { ssrFetch } from '@/lib/api';
 import type { Profile, Experience, Education, Certificate, Skill } from '@/lib/types';
 import { dateRange } from '@/lib/utils';
 
-export const revalidate = 60;
+export const revalidate = 15;
 export const metadata: Metadata = { title: 'About' };
 
 export default async function AboutPage() {

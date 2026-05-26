@@ -4,7 +4,7 @@ import { ContactForm } from './ContactForm';
 import { ssrFetch } from '@/lib/api';
 import type { Profile } from '@/lib/types';
 
-export const revalidate = 60;
+export const revalidate = 15;
 export const metadata: Metadata = { title: 'Contact' };
 
 export default async function ContactPage() {

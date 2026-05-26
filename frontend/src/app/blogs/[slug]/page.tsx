@@ -6,7 +6,7 @@ import { ssrFetch } from '@/lib/api';
 import type { Blog } from '@/lib/types';
 import { formatDate } from '@/lib/utils';
 
-export const revalidate = 60;
+export const revalidate = 15;
 interface Props { params: { slug: string } }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {

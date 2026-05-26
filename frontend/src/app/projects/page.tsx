@@ -5,7 +5,7 @@ import { EmptyState } from '@/components/Loading';
 import { ssrFetch } from '@/lib/api';
 import type { Project } from '@/lib/types';
 
-export const revalidate = 60;
+export const revalidate = 15;
 export const metadata: Metadata = { title: 'Projects' };
 
 export default async function ProjectsPage() {

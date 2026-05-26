@@ -2,11 +2,12 @@ import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import { PublicLayout } from '@/components/PublicLayout';
+import { CommentForm } from '@/components/CommentForm';
 import { ssrFetch } from '@/lib/api';
 import type { Project } from '@/lib/types';
 import { dateRange } from '@/lib/utils';
 
-export const revalidate = 60;
+export const revalidate = 15;
 
 interface Props { params: { slug: string } }
 
@@ -73,6 +74,14 @@ export default async function ProjectDetail({ params }: Props) {
             </div>
           </section>
         )}
+
+        <section className="mt-12 max-w-2xl">
+          <CommentForm
+            projectId={project.id}
+            title="Leave a comment on this project"
+            hint="Your comment will appear once approved by the admin."
+          />
+        </section>
       </article>
     </PublicLayout>
   );

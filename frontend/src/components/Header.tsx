@@ -5,17 +5,21 @@ import { usePathname } from 'next/navigation';
 import { useState } from 'react';
 import { ThemeToggle } from './ThemeProvider';
 import { classNames } from '@/lib/utils';
+import { DEFAULT_PUBLIC_SETTINGS, type PublicSiteSettings } from '@/lib/types';
 
-const nav = [
-  { href: '/', label: 'Home' },
-  { href: '/about', label: 'About' },
-  { href: '/projects', label: 'Projects' },
-  { href: '/blogs', label: 'Blogs' },
-  { href: '/comments', label: 'Comments' },
-  { href: '/contact', label: 'Contact' },
+const ALL_NAV = [
+  { href: '/', label: 'Home', key: 'home' as const },
+  { href: '/about', label: 'About', key: 'about' as const },
+  { href: '/projects', label: 'Projects', key: 'projects' as const },
+  { href: '/blogs', label: 'Blogs', key: 'blogs' as const },
+  { href: '/comments', label: 'Comments', key: 'comments' as const },
+  { href: '/contact', label: 'Contact', key: 'contact' as const },
 ];
 
-export function Header() {
+export function Header({ settings }: { settings?: PublicSiteSettings }) {
+  const nav = (settings?.nav ?? DEFAULT_PUBLIC_SETTINGS.nav);
+  const items = ALL_NAV.filter((item) => nav[item.key]);
+  const siteTitle = settings?.site_title || 'portfolio';
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
 
@@ -23,10 +27,10 @@ export function Header() {
     <header className="sticky top-0 z-30 border-b border-slate-200/60 bg-white/80 backdrop-blur dark:border-slate-800/60 dark:bg-slate-950/80">
       <div className="container-page flex h-14 items-center justify-between">
         <Link href="/" className="font-semibold tracking-tight">
-          <span className="text-brand-600">/</span>portfolio
+          <span className="text-brand-600">/</span>{siteTitle}
         </Link>
         <nav className="hidden md:flex items-center gap-1">
-          {nav.map((item) => {
+          {items.map((item) => {
             const active = pathname === item.href || (item.href !== '/' && pathname.startsWith(item.href));
             return (
               <Link
@@ -57,7 +61,7 @@ export function Header() {
       {open && (
         <div className="md:hidden border-t border-slate-200/60 dark:border-slate-800/60">
           <div className="container-page py-2 flex flex-col gap-1">
-            {nav.map((item) => (
+            {items.map((item) => (
               <Link
                 key={item.href}
                 href={item.href}

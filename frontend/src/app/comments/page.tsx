@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import { PublicLayout } from '@/components/PublicLayout';
+import { CommentForm } from '@/components/CommentForm';
 import { ssrFetch } from '@/lib/api';
 import type { Comment } from '@/lib/types';
 import { formatDate } from '@/lib/utils';
@@ -17,7 +18,7 @@ export default async function CommentsPage() {
         <h1 className="text-3xl font-bold">Testimonials</h1>
         <p className="mt-2 text-slate-500">Public comments from colleagues, clients, and visitors.</p>
         {comments.length === 0 ? (
-          <p className="mt-8 text-sm text-slate-500">No approved comments yet.</p>
+          <p className="mt-8 text-sm text-slate-500">No approved comments yet — be the first below.</p>
         ) : (
           <div className="mt-8 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
             {comments.map((c) => (
@@ -33,6 +34,13 @@ export default async function CommentsPage() {
             ))}
           </div>
         )}
+      </section>
+
+      <section className="container-page pb-16 max-w-2xl">
+        <CommentForm
+          title="Leave a testimonial"
+          hint="Comments are reviewed before being published."
+        />
       </section>
     </PublicLayout>
   );

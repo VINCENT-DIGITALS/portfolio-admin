@@ -5,7 +5,7 @@ import { ssrFetch } from '@/lib/api';
 import type { Profile, Project, Skill, Experience } from '@/lib/types';
 import { dateRange } from '@/lib/utils';
 
-export const revalidate = 60;
+export const revalidate = 15;
 
 export default async function HomePage() {
   const [profileRes, skillsRes, projectsRes, experiencesRes] = await Promise.all([
