@@ -38,8 +38,10 @@ class UserResumeSeeder extends Seeder
             ['id' => 1],
             [
                 'full_name' => 'John Vincent T. Macayanan',
-                'title' => 'App Developer',
-                'bio' => 'Information Technology graduate with experience in developing web and cross-platform applications. Adept at creating user-friendly solutions for web, mobile, and desktop, including projects built on both traditional and low-code platforms. Eager to grow and excel in a competitive, dynamic, and innovation-driven environment.',
+                'title' => 'Senior App Developer',
+                'bio' =>
+                    "App Developer based in Quezon City, focused on building production-grade mobile applications and the backend services that power them. I work primarily with Flutter, PHP, and Laravel, and currently ship a multi-app suite for the B1T1 Takeaway Coffee ecosystem — covering franchisee, barista, customer, rider, and internal operations — at Myracle Innovation Inc., where I was promoted to Senior App Developer in January 2026.\n\n"
+                    . "Cum Laude graduate in Information Technology from Central Luzon State University. I care about clean architecture, thoughtful UX, and shipping software that people actually use. Open to collaborating on impactful product work, especially anything that blends great mobile experiences with well-designed backend systems.",
                 'location' => 'Kamuning, Quezon City, Philippines',
                 'email' => 'mac.jvincent@gmail.com',
                 'phone' => '+63 949 791 8144',
@@ -130,17 +132,31 @@ class UserResumeSeeder extends Seeder
         $items = [
             [
                 'school' => 'Central Luzon State University',
-                'degree' => 'Bachelor of Science in Information Technology',
-                'description' => 'GPA: 1.59 (Cum Laude). Coursework included software engineering, database management, process design, and project management.',
+                'degree' => 'College — Bachelor of Science in Information Technology',
+                'description' => 'A state university in the Philippines, known for its excellence in agricultural sciences, research, and technology, contributing significantly to national development and innovation. Graduated Cum Laude with a GPA of 1.59. Coursework included software engineering, database management, process design, and project management.',
                 'start_date' => '2021-08-01',
                 'end_date' => '2025-07-31',
             ],
             [
                 'school' => 'Wesleyan University-Philippines – Aurora Campus',
-                'degree' => 'Senior High School — Humanities and Social Sciences',
-                'description' => null,
+                'degree' => 'Senior High — Humanities and Social Sciences',
+                'description' => 'A private educational institution known for its strong academic programs and community involvement, providing quality education to students in the Aurora region.',
                 'start_date' => '2019-08-01',
                 'end_date' => '2021-05-31',
+            ],
+            [
+                'school' => 'Maria Aurora National High School',
+                'degree' => 'Junior High',
+                'description' => 'A public educational institution in Aurora, committed to providing quality secondary education and fostering student development through academic and extracurricular activities.',
+                'start_date' => '2015-06-01',
+                'end_date' => '2019-04-30',
+            ],
+            [
+                'school' => 'Maria Aurora Central School',
+                'degree' => 'Elementary',
+                'description' => 'A public elementary school in Aurora, dedicated to nurturing young learners with a strong foundation in academics, values, and holistic development.',
+                'start_date' => '2009-06-01',
+                'end_date' => '2015-03-31',
             ],
         ];
 
@@ -155,10 +171,35 @@ class UserResumeSeeder extends Seeder
 
         $items = [
             [
+                'title' => 'Cum Laude, Class of 2025',
+                'issuer' => 'Central Luzon State University',
+                'description' => 'Graduated with honors, recognizing academic excellence and dedication throughout the Bachelor of Science in Information Technology program.',
+                'issue_date' => '2025-07-31',
+                'certificate_url' => null,
+                'image_url' => null,
+            ],
+            [
                 'title' => 'Google Workspace Specialization',
                 'issuer' => 'Google',
+                'description' => 'Earned a specialization in Google Workspace tools, showcasing skills in collaboration and productivity through advanced use of Google applications.',
                 'issue_date' => '2024-01-01',
                 'certificate_url' => 'https://vincent-digitals.github.io/mainportfolio/static/media/GOOGLE_WORSPACE_SPECIALIZATION.e3cf81fe5d98252077d7.pdf',
+                'image_url' => null,
+            ],
+            [
+                'title' => 'Participant, 10th TOPCIT Philippines, 2024',
+                'issuer' => 'TOPCIT Philippines',
+                'description' => 'Participated in the 10th TOPCIT Philippines assessment program to demonstrate technical problem-solving skills.',
+                'issue_date' => '2024-01-01',
+                'certificate_url' => null,
+                'image_url' => null,
+            ],
+            [
+                'title' => 'Regional Finalist, Philippine Startup Challenge 9, 2024',
+                'issuer' => 'Philippine Startup Challenge',
+                'description' => 'Achieved Top 15 regional finalist position for a startup idea and business plan in the Philippine Startup Challenge 9.',
+                'issue_date' => '2024-01-01',
+                'certificate_url' => null,
                 'image_url' => null,
             ],
         ];
