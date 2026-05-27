@@ -1,15 +1,16 @@
 services:
   - type: web
     name: portfolio-api
-    env: php
+    env: docker
     plan: free
-    buildCommand: composer install --no-dev --optimize-autoloader && php artisan config:cache && php artisan route:cache
-    startCommand: php -S 0.0.0.0:$PORT -t public
+    dockerfilePath: ./Dockerfile
     envVars:
       - key: APP_ENV
         value: production
       - key: APP_DEBUG
         value: false
+      - key: APP_URL
+        sync: false
       - key: APP_KEY
         sync: false
       - key: DB_CONNECTION
