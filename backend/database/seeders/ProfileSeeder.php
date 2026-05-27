@@ -12,7 +12,7 @@ class ProfileSeeder extends Seeder
         Profile::query()->updateOrCreate(
             ['id' => 1],
             [
-                'full_name' => 'Jane Developer',
+                'full_name' => 'John Vincent Macayanan',
                 'title' => 'Full-stack Engineer',
                 'bio' => 'I build modern web experiences with Next.js, Laravel and PostgreSQL.',
                 'location' => 'Manila, Philippines',
