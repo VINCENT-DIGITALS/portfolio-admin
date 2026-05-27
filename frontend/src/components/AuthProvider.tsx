@@ -2,7 +2,7 @@
 
 import { createContext, useCallback, useContext, useEffect, useState } from 'react';
 import { useRouter, usePathname } from 'next/navigation';
-import { apiClient, ApiError, clearAuthToken, getAuthToken, setAuthToken } from '@/lib/api';
+import { AUTH_EXPIRED_EVENT, apiClient, ApiError, clearAuthToken, getAuthToken, setAuthToken } from '@/lib/api';
 import type { User } from '@/lib/types';
 
 interface AuthCtx {
@@ -40,6 +40,32 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   }, []);
 
   useEffect(() => { refresh(); }, [refresh]);
+
+  useEffect(() => {
+    const onAuthExpired = () => {
+      setUser(null);
+      setLoading(false);
+      if (pathname !== '/admin/login') router.replace('/admin/login');
+    };
+
+    window.addEventListener(AUTH_EXPIRED_EVENT, onAuthExpired);
+    return () => window.removeEventListener(AUTH_EXPIRED_EVENT, onAuthExpired);
+  }, [pathname, router]);
+
+  useEffect(() => {
+    if (pathname === '/admin/login') return;
+
+    const onVisible = () => {
+      if (document.visibilityState === 'visible') void refresh();
+    };
+
+    window.addEventListener('focus', refresh);
+    document.addEventListener('visibilitychange', onVisible);
+    return () => {
+      window.removeEventListener('focus', refresh);
+      document.removeEventListener('visibilitychange', onVisible);
+    };
+  }, [pathname, refresh]);
 
   // Redirect to login when not authenticated and not already on login page.
   useEffect(() => {

@@ -5,6 +5,7 @@ export function ProjectCard({ project }: { project: Project }) {
   return (
     <Link
       href={`/projects/${project.slug}`}
+      prefetch
       className="group card-hover flex flex-col gap-4 !p-4 sm:!p-5"
     >
       <div className="relative overflow-hidden rounded-lg">

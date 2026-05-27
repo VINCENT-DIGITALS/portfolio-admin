@@ -43,12 +43,12 @@ export function PageHeader({
   return (
     <header className="mb-6 sm:mb-7">
       {breadcrumbs && breadcrumbs.length > 0 && <Breadcrumbs items={breadcrumbs} />}
-      <div className="flex flex-wrap items-end justify-between gap-3">
+      <div className="flex flex-col items-stretch gap-3 sm:flex-row sm:items-end sm:justify-between">
         <div className="min-w-0">
-          <h1 className="text-2xl font-semibold tracking-tight sm:text-3xl">{title}</h1>
+          <h1 className="break-words text-2xl font-semibold tracking-tight sm:text-3xl">{title}</h1>
           {subtitle && <p className="mt-1 text-sm muted-2">{subtitle}</p>}
         </div>
-        {actions && <div className="flex flex-wrap items-center gap-2">{actions}</div>}
+        {actions && <div className="flex w-full flex-wrap items-center gap-2 sm:w-auto sm:justify-end">{actions}</div>}
       </div>
     </header>
   );

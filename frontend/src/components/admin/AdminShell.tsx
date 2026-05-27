@@ -108,7 +108,7 @@ export function AdminShell({ children }: { children: React.ReactNode }) {
     <div className="flex min-h-screen flex-col bg-slate-50 dark:bg-slate-950">
       {/* Top bar */}
       <header className="sticky top-0 z-40 border-b border-slate-200/80 bg-white/85 backdrop-blur supports-[backdrop-filter]:bg-white/65 dark:border-slate-800/80 dark:bg-slate-900/85 dark:supports-[backdrop-filter]:bg-slate-900/65">
-        <div className="container-wide flex h-14 items-center gap-3">
+        <div className="container-admin flex h-14 min-w-0 items-center gap-3">
           <button
             type="button"
             className="md:hidden inline-flex h-9 w-9 items-center justify-center rounded-lg border border-slate-200 text-slate-700 transition hover:bg-slate-100 dark:border-slate-800 dark:text-slate-200 dark:hover:bg-slate-800"
@@ -133,16 +133,16 @@ export function AdminShell({ children }: { children: React.ReactNode }) {
             </svg>
           </button>
 
-          <Link href="/admin/dashboard" aria-label="Admin" className="group inline-flex items-center gap-2.5">
+          <Link href="/admin/dashboard" aria-label="Admin" className="group inline-flex min-w-0 items-center gap-2.5">
             <span aria-hidden className="relative inline-flex h-2 w-2 shrink-0 rounded-full bg-brand-500 transition group-hover:bg-brand-600 dark:bg-brand-400 dark:group-hover:bg-brand-300">
               <span aria-hidden className="absolute inset-0 -m-1 rounded-full bg-brand-500/20 opacity-0 transition group-hover:opacity-100 dark:bg-brand-400/20" />
             </span>
-            <span className="text-[15px] font-semibold tracking-tight text-slate-900 dark:text-slate-100">
+            <span className="truncate text-[15px] font-semibold tracking-tight text-slate-900 dark:text-slate-100">
               Admin <span className="hidden sm:inline muted-2 font-normal">· Portfolio</span>
             </span>
           </Link>
 
-          <div className="ml-auto flex items-center gap-2">
+          <div className="ml-auto flex min-w-0 shrink-0 items-center gap-2">
             <Link href="/" target="_blank" rel="noreferrer" className="hidden sm:inline-flex btn-ghost !h-9 !py-0 text-xs">
               View site
               <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.25" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M7 17L17 7"/><polyline points="7 7 17 7 17 17"/></svg>
@@ -155,7 +155,7 @@ export function AdminShell({ children }: { children: React.ReactNode }) {
 
         {/* Desktop horizontal nav */}
         <nav className="hidden md:block border-t border-slate-200/60 dark:border-slate-800/60" aria-label="Admin">
-          <div className="container-wide flex items-center gap-1 overflow-x-auto py-2">
+          <div className="container-admin flex items-center gap-1 overflow-x-auto py-2">
             {NAV.map((item) => {
               const active = isActive(item.href);
               return (
@@ -186,7 +186,7 @@ export function AdminShell({ children }: { children: React.ReactNode }) {
             menuOpen ? 'max-h-[640px]' : 'max-h-0',
           )}
         >
-          <nav className="container-wide flex flex-col gap-0.5 py-3" aria-label="Admin mobile">
+          <nav className="container-admin flex flex-col gap-0.5 py-3" aria-label="Admin mobile">
             {NAV.map((item) => {
               const active = isActive(item.href);
               return (
@@ -209,7 +209,7 @@ export function AdminShell({ children }: { children: React.ReactNode }) {
         </div>
       </header>
 
-      <main className="container-wide flex-1 py-6 sm:py-8">
+      <main className="container-admin min-w-0 flex-1 py-6 sm:py-8">
         {children}
       </main>
     </div>

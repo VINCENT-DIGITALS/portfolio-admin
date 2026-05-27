@@ -2,14 +2,19 @@ import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import { PublicLayout } from '@/components/PublicLayout';
-import { CommentForm } from '@/components/CommentForm';
+import { ProjectComments } from '@/components/ProjectComments';
 import { ssrFetch } from '@/lib/api';
-import type { Project, Comment } from '@/lib/types';
-import { dateRange, formatDate } from '@/lib/utils';
+import type { Project } from '@/lib/types';
+import { dateRange } from '@/lib/utils';
 
 export const revalidate = 15;
 
 interface Props { params: { slug: string } }
+
+export async function generateStaticParams() {
+  const res = await ssrFetch<{ data: Project[] }>('/api/projects', 60);
+  return (res?.data ?? []).map((project) => ({ slug: project.slug }));
+}
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const res = await ssrFetch<{ data: Project }>(`/api/projects/${params.slug}`);
@@ -22,9 +27,6 @@ export default async function ProjectDetail({ params }: Props) {
   const res = await ssrFetch<{ data: Project }>(`/api/projects/${params.slug}`);
   const project = res?.data;
   if (!project) notFound();
-
-  const commentsRes = await ssrFetch<{ data: Comment[] }>(`/api/comments?project_id=${project.id}`, 15);
-  const projectComments = commentsRes?.data ?? [];
 
   return (
     <PublicLayout>
@@ -94,47 +96,7 @@ export default async function ProjectDetail({ params }: Props) {
           </section>
         )}
 
-        <section className="mt-14">
-          <div className="flex items-baseline justify-between">
-            <h2 className="text-xl font-semibold tracking-tight sm:text-2xl">
-              Comments
-              {projectComments.length > 0 && (
-                <span className="ml-2 align-middle text-sm muted-2 font-normal">({projectComments.length})</span>
-              )}
-            </h2>
-          </div>
-
-          {projectComments.length === 0 ? (
-            <p className="mt-3 text-sm muted-2">No comments yet — be the first to share your thoughts below.</p>
-          ) : (
-            <ul className="mt-5 space-y-3">
-              {projectComments.map((c) => (
-                <li key={c.id} className="card">
-                  <div className="flex flex-wrap items-baseline justify-between gap-x-3 gap-y-1">
-                    <div className="flex items-center gap-2">
-                      <p className="text-sm font-medium text-slate-900 dark:text-slate-100">{c.name}</p>
-                      {c.rating && (
-                        <span className="text-amber-500" aria-label={`${c.rating} out of 5`}>
-                          {'★'.repeat(c.rating)}<span className="text-slate-200 dark:text-slate-700">{'★'.repeat(5 - c.rating)}</span>
-                        </span>
-                      )}
-                    </div>
-                    <span className="text-xs muted-2">{formatDate(c.created_at, { dateStyle: 'medium' })}</span>
-                  </div>
-                  <p className="mt-2 text-sm leading-relaxed text-slate-800 dark:text-slate-200">{c.message}</p>
-                </li>
-              ))}
-            </ul>
-          )}
-
-          <div className="mt-8">
-            <CommentForm
-              projectId={project.id}
-              title="Leave a comment on this project"
-              hint="Your comment will appear once approved by the admin."
-            />
-          </div>
-        </section>
+        <ProjectComments projectId={project.id} />
       </article>
     </PublicLayout>
   );

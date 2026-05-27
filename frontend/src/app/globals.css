@@ -34,6 +34,7 @@
   /* Layout containers */
   .container-page   { @apply max-w-6xl mx-auto px-4 sm:px-6 lg:px-8; }
   .container-wide   { @apply max-w-screen-2xl mx-auto px-4 sm:px-6 lg:px-8; }
+  .container-admin  { @apply w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8; }
   .container-read   { @apply max-w-2xl mx-auto px-4 sm:px-6; }
   .container-narrow { @apply max-w-3xl mx-auto px-4 sm:px-6 lg:px-8; }
 
@@ -42,7 +43,7 @@
     @apply inline-flex items-center justify-center gap-2 rounded-lg px-3.5 py-2 text-sm font-medium
            transition active:translate-y-px focus:outline-none focus-visible:ring-2
            focus-visible:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed
-           disabled:active:translate-y-0;
+           disabled:active:translate-y-0 whitespace-nowrap;
   }
   .btn-primary {
     @apply btn bg-brand-600 text-white shadow-soft hover:bg-brand-700
@@ -119,8 +120,8 @@
   .skeleton { @apply animate-pulse rounded bg-slate-200 dark:bg-slate-800; }
 
   /* Phone-friendly table scroll */
-  .scroll-x       { @apply overflow-x-auto -mx-4 sm:mx-0; }
-  .scroll-x > *   { @apply min-w-[640px] sm:min-w-0 px-4 sm:px-0; }
+  .scroll-x       { @apply w-full overflow-x-auto; }
+  .scroll-x > *   { @apply min-w-[640px] sm:min-w-0; }
 
   /* Dividers */
   .hr-soft { @apply border-t border-slate-200/70 dark:border-slate-800/70; }

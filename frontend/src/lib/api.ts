@@ -1,5 +1,6 @@
 const API_URL = process.env.NEXT_PUBLIC_API_URL ?? 'http://localhost:8000';
 const AUTH_TOKEN_KEY = 'portfolio_admin_token';
+export const AUTH_EXPIRED_EVENT = 'portfolio-admin-auth-expired';
 
 export class ApiError extends Error {
   status: number;
@@ -24,6 +25,22 @@ export function setAuthToken(token: string): void {
 export function clearAuthToken(): void {
   if (typeof window === 'undefined') return;
   window.localStorage.removeItem(AUTH_TOKEN_KEY);
+}
+
+function isAdminRequest(path: string): boolean {
+  try {
+    const url = path.startsWith('http') ? new URL(path) : null;
+    const pathname = url ? url.pathname : path;
+    return pathname.includes('/api/admin/') && !pathname.endsWith('/api/admin/login');
+  } catch {
+    return path.includes('/api/admin/') && !path.endsWith('/api/admin/login');
+  }
+}
+
+function handleUnauthorized(path: string): void {
+  if (typeof window === 'undefined' || !isAdminRequest(path)) return;
+  clearAuthToken();
+  window.dispatchEvent(new CustomEvent(AUTH_EXPIRED_EVENT));
 }
 
 export interface RequestOptions extends Omit<RequestInit, 'body'> {
@@ -67,6 +84,7 @@ export async function api<T = unknown>(path: string, opts: RequestOptions = {}):
     const message = (data && typeof data === 'object' && 'message' in data && typeof (data as Record<string, unknown>).message === 'string')
       ? (data as { message: string }).message
       : `Request failed: ${res.status}`;
+    if (res.status === 401) handleUnauthorized(path);
     throw new ApiError(message, res.status, data);
   }
 
