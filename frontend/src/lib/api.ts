@@ -1,4 +1,5 @@
 const API_URL = process.env.NEXT_PUBLIC_API_URL ?? 'http://localhost:8000';
+const AUTH_TOKEN_KEY = 'portfolio_admin_token';
 
 export class ApiError extends Error {
   status: number;
@@ -10,25 +11,24 @@ export class ApiError extends Error {
   }
 }
 
-let csrfFetched = false;
-
-/** Fetch the CSRF cookie from Sanctum once per browser session. */
-export async function ensureCsrf(): Promise<void> {
-  if (csrfFetched || typeof window === 'undefined') return;
-  await fetch(`${API_URL}/sanctum/csrf-cookie`, { credentials: 'include' });
-  csrfFetched = true;
+export function getAuthToken(): string | null {
+  if (typeof window === 'undefined') return null;
+  return window.localStorage.getItem(AUTH_TOKEN_KEY);
 }
 
-function getCookie(name: string): string | undefined {
-  if (typeof document === 'undefined') return undefined;
-  const match = document.cookie.match(new RegExp('(?:^|; )' + name.replace(/[-.+*]/g, '\\$&') + '=([^;]*)'));
-  return match ? decodeURIComponent(match[1]) : undefined;
+export function setAuthToken(token: string): void {
+  if (typeof window === 'undefined') return;
+  window.localStorage.setItem(AUTH_TOKEN_KEY, token);
+}
+
+export function clearAuthToken(): void {
+  if (typeof window === 'undefined') return;
+  window.localStorage.removeItem(AUTH_TOKEN_KEY);
 }
 
 export interface RequestOptions extends Omit<RequestInit, 'body'> {
   body?: unknown;
-  /** Skip CSRF fetch for SSR/public reads. */
-  skipCsrf?: boolean;
+  auth?: 'auto' | 'none';
   /** Cache control for Next.js fetch */
   next?: { revalidate?: number; tags?: string[] };
 }
@@ -36,14 +36,13 @@ export interface RequestOptions extends Omit<RequestInit, 'body'> {
 export async function api<T = unknown>(path: string, opts: RequestOptions = {}): Promise<T> {
   const url = path.startsWith('http') ? path : `${API_URL}${path.startsWith('/') ? '' : '/'}${path}`;
   const method = (opts.method ?? 'GET').toUpperCase();
-  const isMutation = !['GET', 'HEAD', 'OPTIONS'].includes(method);
-
-  if (isMutation && !opts.skipCsrf) {
-    await ensureCsrf();
-  }
 
   const headers = new Headers(opts.headers as HeadersInit | undefined);
   if (!headers.has('Accept')) headers.set('Accept', 'application/json');
+  const token = opts.auth === 'none' ? null : getAuthToken();
+  if (token && !headers.has('Authorization')) {
+    headers.set('Authorization', `Bearer ${token}`);
+  }
 
   let body: BodyInit | undefined;
   if (opts.body instanceof FormData) {
@@ -53,15 +52,12 @@ export async function api<T = unknown>(path: string, opts: RequestOptions = {}):
     body = JSON.stringify(opts.body);
   }
 
-  const xsrf = getCookie('XSRF-TOKEN');
-  if (xsrf && isMutation) headers.set('X-XSRF-TOKEN', xsrf);
-
   const res = await fetch(url, {
     ...opts,
     method,
     headers,
     body,
-    credentials: 'include',
+    credentials: opts.credentials ?? 'omit',
   });
 
   const text = await res.text();

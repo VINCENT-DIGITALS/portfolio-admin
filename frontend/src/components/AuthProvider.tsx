@@ -2,7 +2,7 @@
 
 import { createContext, useCallback, useContext, useEffect, useState } from 'react';
 import { useRouter, usePathname } from 'next/navigation';
-import { apiClient, ApiError } from '@/lib/api';
+import { apiClient, ApiError, clearAuthToken, getAuthToken, setAuthToken } from '@/lib/api';
 import type { User } from '@/lib/types';
 
 interface AuthCtx {
@@ -22,10 +22,17 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
 
   const refresh = useCallback(async () => {
+    if (!getAuthToken()) {
+      setUser(null);
+      setLoading(false);
+      return;
+    }
+
     try {
       const res = await apiClient.get<{ user: User | null }>('/api/admin/user');
       setUser(res.user ?? null);
     } catch {
+      clearAuthToken();
       setUser(null);
     } finally {
       setLoading(false);
@@ -43,13 +50,15 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   }, [loading, user, pathname, router]);
 
   const login = async (email: string, password: string) => {
-    await apiClient.post('/api/admin/login', { email, password });
-    await refresh();
+    const res = await apiClient.post<{ token: string; user: User }>('/api/admin/login', { email, password }, { auth: 'none' });
+    setAuthToken(res.token);
+    setUser(res.user);
   };
 
   const logout = async () => {
     try { await apiClient.post('/api/admin/logout'); }
     catch (e) { if (!(e instanceof ApiError)) throw e; }
+    clearAuthToken();
     setUser(null);
     router.replace('/admin/login');
   };

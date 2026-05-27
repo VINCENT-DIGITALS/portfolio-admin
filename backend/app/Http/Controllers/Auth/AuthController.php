@@ -4,34 +4,35 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\LoginRequest;
+use App\Models\User;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\ValidationException;
 
 class AuthController extends Controller
 {
     public function login(LoginRequest $request)
     {
-        $credentials = $request->only('email', 'password');
+        $user = User::query()->where('email', $request->string('email'))->first();
 
-        if (!Auth::attempt($credentials, true)) {
+        if (! $user || ! Hash::check($request->string('password'), $user->password) || ! $user->isAdmin()) {
             throw ValidationException::withMessages([
                 'email' => ['The provided credentials are incorrect.'],
             ]);
         }
 
-        $request->session()->regenerate();
+        $user->tokens()->delete();
+        $token = $user->createToken('admin')->plainTextToken;
 
         return response()->json([
-            'user' => Auth::user(),
+            'token' => $token,
+            'user' => $user,
         ]);
     }
 
     public function logout(Request $request)
     {
-        Auth::guard('web')->logout();
-        $request->session()->invalidate();
-        $request->session()->regenerateToken();
+        $request->user()?->currentAccessToken()?->delete();
 
         return response()->json(['message' => 'Logged out.']);
     }
