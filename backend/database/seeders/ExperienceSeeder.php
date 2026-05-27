@@ -4,31 +4,43 @@ namespace Database\Seeders;
 
 use App\Models\Experience;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
 
 class ExperienceSeeder extends Seeder
 {
     public function run(): void
     {
+        DB::table('experiences')->delete();
+
         $items = [
             [
-                'company' => 'Acme Corp',
-                'position' => 'Senior Full-stack Engineer',
-                'description' => 'Lead engineer building internal CMS and customer-facing portals.',
-                'start_date' => '2022-01-01',
+                'company' => 'Myracle Innovation Inc.',
+                'position' => 'App Developer',
+                'description' => 'Started as Junior App Developer; promoted to Senior App Developer on January 11, 2026. Responsible for developing and maintaining multiple mobile applications and their backend APIs (PHP, GCP) for various clients.',
+                'start_date' => '2025-08-01',
                 'end_date' => null,
                 'is_current' => true,
             ],
             [
-                'company' => 'Beta Labs',
-                'position' => 'Frontend Developer',
-                'description' => 'Built marketing sites and dashboards in React.',
-                'start_date' => '2019-06-01',
-                'end_date' => '2021-12-15',
+                'company' => 'Builders of Information Technology Society (BITS)',
+                'position' => 'Resident Member',
+                'description' => "Gained experience in producing graphics for events, promotions, and organizational activities.\nContributed to providing fundamentals programming tutorials to lower-year students as part of the organization's outreach and skill-building initiatives.",
+                'start_date' => '2024-08-01',
+                'end_date' => '2025-08-31',
+                'is_current' => false,
+            ],
+            [
+                'company' => 'PhilRice – Central Experiment Station',
+                'position' => 'On-the-Job Training',
+                'description' => 'Contributed to the development of a service request management system for ICT-related issues through web and mobile platforms, using Laravel, Flutter, MySQL, and phpMyAdmin.',
+                'start_date' => '2025-02-01',
+                'end_date' => '2025-05-31',
                 'is_current' => false,
             ],
         ];
+
         foreach ($items as $i => $row) {
-            Experience::updateOrCreate(['company' => $row['company'], 'position' => $row['position']], $row + ['sort_order' => $i]);
+            Experience::create($row + ['sort_order' => $i]);
         }
     }
 }
