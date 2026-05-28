@@ -41,4 +41,19 @@ class Project extends Model
     {
         return 'slug';
     }
+
+    public function resolveRouteBinding($value, $field = null): ?Model
+    {
+        $query = $this->newQuery();
+
+        if ($field !== null) {
+            return $query->where($field, $value)->firstOrFail();
+        }
+
+        if (is_numeric($value)) {
+            return $query->whereKey($value)->firstOrFail();
+        }
+
+        return $query->where($this->getRouteKeyName(), $value)->firstOrFail();
+    }
 }

@@ -25,13 +25,17 @@ class BlogController extends Controller
         return new BlogResource($blog);
     }
 
-    public function show(Blog $blog)
+    public function show(string $blog)
     {
+        $blog = Blog::findOrFail($blog);
+
         return new BlogResource($blog);
     }
 
-    public function update(UpdateBlogRequest $request, Blog $blog)
+    public function update(UpdateBlogRequest $request, string $blog)
     {
+        $blog = Blog::findOrFail($blog);
+
         $data = $request->validated();
         if ($request->boolean('is_published') && empty($blog->published_at) && empty($data['published_at'])) {
             $data['published_at'] = now();
@@ -40,8 +44,10 @@ class BlogController extends Controller
         return new BlogResource($blog);
     }
 
-    public function destroy(Blog $blog)
+    public function destroy(string $blog)
     {
+        $blog = Blog::findOrFail($blog);
+
         $blog->delete();
         return response()->json(['message' => 'Blog deleted.']);
     }

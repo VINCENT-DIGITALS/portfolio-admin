@@ -23,19 +23,25 @@ class ProjectController extends Controller
         return new ProjectResource($project->load('images'));
     }
 
-    public function show(Project $project)
+    public function show(string $project)
     {
+        $project = Project::with('images')->findOrFail($project);
+
         return new ProjectResource($project->load('images'));
     }
 
-    public function update(UpdateProjectRequest $request, Project $project)
+    public function update(UpdateProjectRequest $request, string $project)
     {
+        $project = Project::findOrFail($project);
+
         $project->update($request->validated());
         return new ProjectResource($project->load('images'));
     }
 
-    public function destroy(Project $project)
+    public function destroy(string $project)
     {
+        $project = Project::findOrFail($project);
+
         $project->delete();
         return response()->json(['message' => 'Project deleted.']);
     }
