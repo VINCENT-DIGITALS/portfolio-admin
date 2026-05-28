@@ -1,4 +1,4 @@
-const API_URL = process.env.NEXT_PUBLIC_API_URL ?? 'http://localhost:8000';
+export const API_URL = process.env.NEXT_PUBLIC_API_URL ?? 'http://localhost:8000';
 const AUTH_TOKEN_KEY = 'portfolio_admin_token';
 export const AUTH_EXPIRED_EVENT = 'portfolio-admin-auth-expired';
 
@@ -50,8 +50,12 @@ export interface RequestOptions extends Omit<RequestInit, 'body'> {
   next?: { revalidate?: number; tags?: string[] };
 }
 
+export function toApiUrl(path: string): string {
+  return path.startsWith('http') ? path : `${API_URL}${path.startsWith('/') ? '' : '/'}${path}`;
+}
+
 export async function api<T = unknown>(path: string, opts: RequestOptions = {}): Promise<T> {
-  const url = path.startsWith('http') ? path : `${API_URL}${path.startsWith('/') ? '' : '/'}${path}`;
+  const url = toApiUrl(path);
   const method = (opts.method ?? 'GET').toUpperCase();
 
   const headers = new Headers(opts.headers as HeadersInit | undefined);
@@ -105,7 +109,7 @@ export const apiClient = {
 
 /** SSR-friendly fetcher: ISR cache by default. */
 export async function ssrFetch<T>(path: string, revalidate = 60): Promise<T | null> {
-  const url = `${API_URL}${path.startsWith('/') ? '' : '/'}${path}`;
+  const url = toApiUrl(path);
   try {
     const res = await fetch(url, { next: { revalidate }, headers: { Accept: 'application/json' } });
     if (!res.ok) return null;

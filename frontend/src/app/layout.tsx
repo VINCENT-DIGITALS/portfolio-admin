@@ -1,6 +1,7 @@
 import './globals.css';
 import type { Metadata } from 'next';
 import { ThemeProvider } from '@/components/ThemeProvider';
+import { OfflineCacheManager } from '@/components/OfflineCacheManager';
 
 export const metadata: Metadata = {
   title: { default: 'My Portfolio', template: '%s — My Portfolio' },
@@ -12,7 +13,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en" suppressHydrationWarning>
       <body>
-        <ThemeProvider>{children}</ThemeProvider>
+        <ThemeProvider>
+          <OfflineCacheManager />
+          {children}
+        </ThemeProvider>
       </body>
     </html>
   );
