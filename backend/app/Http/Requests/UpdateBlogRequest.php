@@ -11,7 +11,9 @@ class UpdateBlogRequest extends FormRequest
 
     public function rules(): array
     {
-        $id = $this->route('blog')?->id;
+        $blog = $this->route('blog');
+        $id = is_object($blog) ? $blog->id : $blog;
+
         return [
             'title' => ['sometimes', 'required', 'string', 'max:255'],
             'slug' => ['nullable', 'string', 'max:255', Rule::unique('blogs', 'slug')->ignore($id)],
