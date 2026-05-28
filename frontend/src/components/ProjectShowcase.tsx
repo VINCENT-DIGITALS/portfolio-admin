@@ -13,14 +13,10 @@ interface ShowcaseImage {
 interface Props {
   title: string;
   images: ProjectImage[];
-  fallbackImage?: string | null;
 }
 
-export function ProjectShowcase({ title, images, fallbackImage }: Props) {
-  const slides = useMemo<ShowcaseImage[]>(() => {
-    if (images.length > 0) return images;
-    return fallbackImage ? [{ id: 'fallback', image_url: fallbackImage, caption: `${title} preview` }] : [];
-  }, [fallbackImage, images, title]);
+export function ProjectShowcase({ title, images }: Props) {
+  const slides = useMemo<ShowcaseImage[]>(() => images, [images]);
 
   const [activeIndex, setActiveIndex] = useState(0);
 

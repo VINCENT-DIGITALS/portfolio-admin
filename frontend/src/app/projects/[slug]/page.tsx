@@ -87,7 +87,6 @@ export default async function ProjectDetail({ params }: Props) {
           <ProjectShowcase
             title={project.title}
             images={project.images ?? []}
-            fallbackImage={project.featured_image_url}
           />
         </section>
 
