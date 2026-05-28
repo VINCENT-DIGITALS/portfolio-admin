@@ -26,9 +26,19 @@ export function ProjectCard({ project }: { project: Project }) {
       </div>
 
       <div className="flex-1">
-        <h3 className="text-base font-semibold tracking-tight text-slate-900 group-hover:text-brand-700 dark:text-slate-50 dark:group-hover:text-brand-300">
-          {project.title}
-        </h3>
+        <div className="flex items-center gap-3">
+          {project.app_icon_url && (
+            // eslint-disable-next-line @next/next/no-img-element
+            <img
+              src={project.app_icon_url}
+              alt=""
+              className="h-11 w-11 rounded-2xl border border-slate-200/80 object-cover shadow-soft dark:border-slate-700/70"
+            />
+          )}
+          <h3 className="text-base font-semibold tracking-tight text-slate-900 group-hover:text-brand-700 dark:text-slate-50 dark:group-hover:text-brand-300">
+            {project.title}
+          </h3>
+        </div>
         {project.short_description && (
           <p className="mt-1.5 line-clamp-3 text-sm muted">{project.short_description}</p>
         )}

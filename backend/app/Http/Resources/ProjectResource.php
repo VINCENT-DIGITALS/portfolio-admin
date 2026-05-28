@@ -21,6 +21,7 @@ class ProjectResource extends JsonResource
             'end_date' => $this->end_date?->toDateString(),
             'github_url' => $this->github_url,
             'live_demo_url' => $this->live_demo_url,
+            'app_icon_url' => $this->app_icon_url,
             'featured_image_url' => $this->featured_image_url,
             'tech_stack' => $this->tech_stack ?? [],
             'is_featured' => $this->is_featured,

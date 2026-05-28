@@ -43,6 +43,7 @@ export interface Project {
   end_date: string | null;
   github_url: string | null;
   live_demo_url: string | null;
+  app_icon_url: string | null;
   featured_image_url: string | null;
   tech_stack: string[];
   is_featured: boolean;

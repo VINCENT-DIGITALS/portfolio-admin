@@ -6,9 +6,11 @@ import { apiClient, ApiError } from '@/lib/api';
 import { Field, Input, Textarea, Select } from '@/components/Field';
 import { Spinner } from '@/components/Loading';
 import { BannerUpload } from '@/components/admin/BannerUpload';
-import type { Project } from '@/lib/types';
+import { ProjectScreenshotsInput } from '@/components/admin/ProjectScreenshotsInput';
+import type { Project, ProjectImage } from '@/lib/types';
 
-type FormValues = Partial<Project> & { tech_stack_input?: string };
+type ScreenshotDraft = Pick<ProjectImage, 'image_url' | 'caption' | 'sort_order'> & { id?: number };
+type FormValues = Omit<Partial<Project>, 'images'> & { tech_stack_input?: string; images: ScreenshotDraft[] };
 
 export function ProjectForm({ initial, mode }: { initial?: Project; mode: 'create' | 'edit' }) {
   const router = useRouter();
@@ -24,11 +26,13 @@ export function ProjectForm({ initial, mode }: { initial?: Project; mode: 'creat
     end_date: initial?.end_date ?? '',
     github_url: initial?.github_url ?? '',
     live_demo_url: initial?.live_demo_url ?? '',
+    app_icon_url: initial?.app_icon_url ?? '',
     featured_image_url: initial?.featured_image_url ?? '',
     is_featured: initial?.is_featured ?? false,
     is_published: initial?.is_published ?? true,
     sort_order: initial?.sort_order ?? 0,
     tech_stack_input: (initial?.tech_stack ?? []).join(', '),
+    images: (initial?.images ?? []).map((image, index) => ({ ...image, sort_order: image.sort_order ?? index })),
   });
   const [errors, setErrors] = useState<Record<string, string[]>>({});
   const [busy, setBusy] = useState(false);
@@ -44,6 +48,12 @@ export function ProjectForm({ initial, mode }: { initial?: Project; mode: 'creat
       start_date: form.start_date || null,
       end_date: form.end_date || null,
       tech_stack: (form.tech_stack_input ?? '').split(',').map((s) => s.trim()).filter(Boolean),
+      images: (form.images ?? []).map((image, index) => ({
+        id: image.id,
+        image_url: image.image_url,
+        caption: image.caption || null,
+        sort_order: index,
+      })),
     };
     delete (payload as Record<string, unknown>).tech_stack_input;
 
@@ -119,18 +129,42 @@ export function ProjectForm({ initial, mode }: { initial?: Project; mode: 'creat
           <Field label="GitHub URL" error={errors.github_url?.[0]}><Input type="url" value={form.github_url ?? ''} onChange={(e) => set('github_url', e.target.value)} /></Field>
           <Field label="Live demo URL" error={errors.live_demo_url?.[0]}><Input type="url" value={form.live_demo_url ?? ''} onChange={(e) => set('live_demo_url', e.target.value)} /></Field>
         </div>
-        <BannerUpload
-          value={form.featured_image_url ?? null}
-          onChange={(url) => set('featured_image_url', url ?? '')}
-          hint="Uploaded to your Supabase Storage bucket under /projects."
-        />
-        {errors.featured_image_url?.[0] && (
-          <p className="-mt-3 mb-4 text-xs text-red-600 dark:text-red-400">{errors.featured_image_url[0]}</p>
-        )}
+        <div className="mt-4 grid grid-cols-1 gap-5 lg:grid-cols-2">
+          <div>
+            <BannerUpload
+              value={form.app_icon_url ?? null}
+              onChange={(url) => set('app_icon_url', url ?? '')}
+              folder="projects/icons"
+              label="App icon"
+              hint="Upload the app icon or logo used in the project header."
+              aspect="square"
+            />
+            {errors.app_icon_url?.[0] && (
+              <p className="-mt-3 mb-4 text-xs text-red-600 dark:text-red-400">{errors.app_icon_url[0]}</p>
+            )}
+          </div>
+
+          <div>
+            <BannerUpload
+              value={form.featured_image_url ?? null}
+              onChange={(url) => set('featured_image_url', url ?? '')}
+              hint="Upload a cover image used in project cards and as the fallback hero visual."
+            />
+            {errors.featured_image_url?.[0] && (
+              <p className="-mt-3 mb-4 text-xs text-red-600 dark:text-red-400">{errors.featured_image_url[0]}</p>
+            )}
+          </div>
+        </div>
         <Field label="Tech stack" hint="Comma separated, e.g. Next.js, Laravel, Postgres">
           <Input value={form.tech_stack_input ?? ''} onChange={(e) => set('tech_stack_input', e.target.value)} />
         </Field>
       </section>
+
+      <ProjectScreenshotsInput
+        items={form.images ?? []}
+        onChange={(images) => set('images', images)}
+        error={errors.images?.[0] ?? errors['images.0.image_url']?.[0]}
+      />
 
       <section className="card">
         <h2 className="text-base font-semibold tracking-tight">Visibility</h2>
