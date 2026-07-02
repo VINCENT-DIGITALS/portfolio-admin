@@ -1,0 +1,1315 @@
+{
+  "source": "http://127.0.0.1:8000",
+  "partial": false,
+  "data": {
+    "/api/public-settings": {
+      "data": {
+        "site_title": "My Portfolio",
+        "site_tagline": "Building things on the web",
+        "theme": "system",
+        "comments_open": true,
+        "maintenance_mode": false,
+        "maintenance_message": "The site is currently undergoing maintenance. Please check back soon.",
+        "nav": {
+          "home": true,
+          "about": true,
+          "projects": true,
+          "blogs": false,
+          "comments": true,
+          "contact": true
+        }
+      }
+    },
+    "/api/profile": {
+      "data": {
+        "id": 1,
+        "full_name": "John Vincent T. Macayanan",
+        "title": "Senior App Developer",
+        "bio": "App Developer based in Quezon City, focused on building production-grade mobile applications and the backend services that power them. I work primarily with Flutter, PHP, and Laravel, and currently ship a multi-app suite for the B1T1 Takeaway Coffee ecosystem — covering franchisee, barista, customer, rider, and internal operations — at Myracle Innovation Inc., where I was promoted to Senior App Developer in January 2026.\n\nCum Laude graduate in Information Technology from Central Luzon State University. I care about clean architecture, thoughtful UX, and shipping software that people actually use. Open to collaborating on impactful product work, especially anything that blends great mobile experiences with well-designed backend systems.",
+        "location": "Kamuning, Quezon City, Philippines",
+        "email": "mac.jvincent@gmail.com",
+        "phone": "+63 949 791 8144",
+        "profile_image_url": "https://ucegexozgusoqcecqxxl.supabase.co/storage/v1/object/public/portfolio/profile/BY3EmnN1KKuHSZwE6yxQdNSq.JPG",
+        "resume_url": "https://portfolio-admin-wine-two.vercel.app",
+        "github_url": "https://github.com/VINCENT-DIGITALS",
+        "linkedin_url": "https://linkedin.com/in/example",
+        "facebook_url": "https://www.facebook.com/Itsvincentlang",
+        "portfolio_url": "https://portfolio-admin-wine-two.vercel.app",
+        "updated_at": "2026-05-28T09:26:22.000000Z"
+      }
+    },
+    "/api/skills": {
+      "data": [
+        {
+          "id": 109,
+          "name": "PHP",
+          "category": "Languages",
+          "icon_url": null,
+          "sort_order": 0,
+          "is_active": true
+        },
+        {
+          "id": 110,
+          "name": "Dart",
+          "category": "Languages",
+          "icon_url": null,
+          "sort_order": 1,
+          "is_active": true
+        },
+        {
+          "id": 111,
+          "name": "JavaScript",
+          "category": "Languages",
+          "icon_url": null,
+          "sort_order": 2,
+          "is_active": true
+        },
+        {
+          "id": 112,
+          "name": "HTML",
+          "category": "Languages",
+          "icon_url": null,
+          "sort_order": 3,
+          "is_active": true
+        },
+        {
+          "id": 113,
+          "name": "CSS",
+          "category": "Languages",
+          "icon_url": null,
+          "sort_order": 4,
+          "is_active": true
+        },
+        {
+          "id": 114,
+          "name": "Laravel",
+          "category": "Frameworks",
+          "icon_url": null,
+          "sort_order": 5,
+          "is_active": true
+        },
+        {
+          "id": 115,
+          "name": "Flutter",
+          "category": "Frameworks",
+          "icon_url": null,
+          "sort_order": 6,
+          "is_active": true
+        },
+        {
+          "id": 116,
+          "name": "ReactJS",
+          "category": "Frameworks",
+          "icon_url": null,
+          "sort_order": 7,
+          "is_active": true
+        },
+        {
+          "id": 117,
+          "name": "FlutterFlow",
+          "category": "Frameworks",
+          "icon_url": null,
+          "sort_order": 8,
+          "is_active": true
+        },
+        {
+          "id": 118,
+          "name": "MySQL",
+          "category": "Databases",
+          "icon_url": null,
+          "sort_order": 9,
+          "is_active": true
+        },
+        {
+          "id": 119,
+          "name": "Firebase",
+          "category": "Databases",
+          "icon_url": null,
+          "sort_order": 10,
+          "is_active": true
+        },
+        {
+          "id": 120,
+          "name": "RESTful API",
+          "category": "APIs",
+          "icon_url": null,
+          "sort_order": 11,
+          "is_active": true
+        },
+        {
+          "id": 121,
+          "name": "Git",
+          "category": "Tools",
+          "icon_url": null,
+          "sort_order": 12,
+          "is_active": true
+        },
+        {
+          "id": 122,
+          "name": "GitHub",
+          "category": "Tools",
+          "icon_url": null,
+          "sort_order": 13,
+          "is_active": true
+        },
+        {
+          "id": 123,
+          "name": "phpMyAdmin",
+          "category": "Tools",
+          "icon_url": null,
+          "sort_order": 14,
+          "is_active": true
+        },
+        {
+          "id": 124,
+          "name": "Figma",
+          "category": "Design",
+          "icon_url": null,
+          "sort_order": 15,
+          "is_active": true
+        },
+        {
+          "id": 125,
+          "name": "Canva",
+          "category": "Design",
+          "icon_url": null,
+          "sort_order": 16,
+          "is_active": true
+        },
+        {
+          "id": 126,
+          "name": "Trello",
+          "category": "Collaboration",
+          "icon_url": null,
+          "sort_order": 17,
+          "is_active": true
+        },
+        {
+          "id": 127,
+          "name": "Slack",
+          "category": "Collaboration",
+          "icon_url": null,
+          "sort_order": 18,
+          "is_active": true
+        },
+        {
+          "id": 128,
+          "name": "MS Suite",
+          "category": "Collaboration",
+          "icon_url": null,
+          "sort_order": 19,
+          "is_active": true
+        },
+        {
+          "id": 129,
+          "name": "Google Workspace",
+          "category": "Collaboration",
+          "icon_url": null,
+          "sort_order": 20,
+          "is_active": true
+        },
+        {
+          "id": 130,
+          "name": "WordPress",
+          "category": "CMS",
+          "icon_url": null,
+          "sort_order": 21,
+          "is_active": true
+        }
+      ]
+    },
+    "/api/projects": {
+      "data": [
+        {
+          "id": 60,
+          "title": "B1T1 Franchisee",
+          "slug": "b1t1-franchisee",
+          "short_description": "Franchisee management application with operational monitoring, product ordering, and backend API integration.",
+          "full_description": "Developed and maintained a franchisee management application with operational monitoring, product ordering, and backend API integration using Flutter, PHP, and GCP. Built for the B1T1 Takeaway Coffee client.",
+          "category": "Mobile App",
+          "status": "ongoing",
+          "role": "App Developer",
+          "start_date": "2025-09-21",
+          "end_date": null,
+          "github_url": null,
+          "live_demo_url": null,
+          "app_icon_url": "https://ucegexozgusoqcecqxxl.supabase.co/storage/v1/object/public/portfolio/projects/icons/j5A94zEAWI2Rqc7fiB0eg720.png",
+          "featured_image_url": "https://ucegexozgusoqcecqxxl.supabase.co/storage/v1/object/public/portfolio/projects/IjXalHcMXDIHBzUJnmQebuEZ.png",
+          "tech_stack": [
+            "Flutter",
+            "Dart",
+            "PHP",
+            "GCP",
+            "RESTful API"
+          ],
+          "is_featured": false,
+          "is_published": true,
+          "sort_order": 0,
+          "created_at": "2026-05-27T03:53:39.000000Z",
+          "updated_at": "2026-05-28T11:18:22.000000Z"
+        },
+        {
+          "id": 61,
+          "title": "B1T1 Barista",
+          "slug": "b1t1-barista",
+          "short_description": "Barista operations app with reporting, monitoring, inventory ordering, and real-time backend integration.",
+          "full_description": "Built and maintained a barista operations app featuring reporting, monitoring, inventory ordering, and real-time backend integration. Part of the B1T1 Takeaway Coffee ecosystem.",
+          "category": "Mobile App",
+          "status": "ongoing",
+          "role": "App Developer",
+          "start_date": "2025-10-07",
+          "end_date": null,
+          "github_url": null,
+          "live_demo_url": null,
+          "app_icon_url": "https://ucegexozgusoqcecqxxl.supabase.co/storage/v1/object/public/portfolio/projects/icons/ohjJebpXfR6pszYzYUPHt8aM.png",
+          "featured_image_url": "https://ucegexozgusoqcecqxxl.supabase.co/storage/v1/object/public/portfolio/projects/Z59fNiLYkMLf8P9GrBzubSZ1.jpg",
+          "tech_stack": [
+            "Flutter",
+            "Dart",
+            "PHP",
+            "GCP"
+          ],
+          "is_featured": false,
+          "is_published": true,
+          "sort_order": 1,
+          "created_at": "2026-05-27T03:53:39.000000Z",
+          "updated_at": "2026-05-28T11:48:37.000000Z"
+        },
+        {
+          "id": 62,
+          "title": "B1T1 Takeaway Coffee — Customer App",
+          "slug": "b1t1-takeaway-coffee-customer-app",
+          "short_description": "Consumer application for product ordering, membership tracking, and customer engagement.",
+          "full_description": "Contributed to the development and maintenance of a consumer application for product ordering, membership tracking, and customer engagement features.",
+          "category": "Mobile App",
+          "status": "ongoing",
+          "role": "App Developer",
+          "start_date": "2025-11-10",
+          "end_date": null,
+          "github_url": null,
+          "live_demo_url": null,
+          "app_icon_url": "https://ucegexozgusoqcecqxxl.supabase.co/storage/v1/object/public/portfolio/projects/icons/9etHluBCprvIeoqpsozY90Ne.png",
+          "featured_image_url": "https://ucegexozgusoqcecqxxl.supabase.co/storage/v1/object/public/portfolio/projects/3avWPF9RmJtPC63CAg7GvEWj.jpg",
+          "tech_stack": [
+            "Flutter",
+            "Dart",
+            "PHP",
+            "GCP"
+          ],
+          "is_featured": true,
+          "is_published": true,
+          "sort_order": 2,
+          "created_at": "2026-05-27T03:53:39.000000Z",
+          "updated_at": "2026-05-28T11:48:05.000000Z"
+        },
+        {
+          "id": 63,
+          "title": "B1T1 Rider",
+          "slug": "b1t1-rider",
+          "short_description": "Delivery service app with order coordination and backend API integration.",
+          "full_description": "Developed delivery service functionalities connected to the customer application, including order coordination and backend API integration.",
+          "category": "Mobile App",
+          "status": "ongoing",
+          "role": "App Developer",
+          "start_date": "2025-11-10",
+          "end_date": null,
+          "github_url": null,
+          "live_demo_url": null,
+          "app_icon_url": "https://ucegexozgusoqcecqxxl.supabase.co/storage/v1/object/public/portfolio/projects/icons/gopLZxBcZMmWJkZVkdstpM6e.png",
+          "featured_image_url": "https://ucegexozgusoqcecqxxl.supabase.co/storage/v1/object/public/portfolio/projects/EzUpe1eEK2NrRiynnV8x5ELW.jpg",
+          "tech_stack": [
+            "Flutter",
+            "Dart",
+            "PHP",
+            "GCP"
+          ],
+          "is_featured": false,
+          "is_published": true,
+          "sort_order": 3,
+          "created_at": "2026-05-27T03:53:39.000000Z",
+          "updated_at": "2026-05-28T11:49:52.000000Z"
+        },
+        {
+          "id": 64,
+          "title": "B1T1 World",
+          "slug": "b1t1-world",
+          "short_description": "Internal employee communication and coordination platform with task tracking and franchise collaboration.",
+          "full_description": "Built an internal employee communication and coordination platform with task tracking and franchise collaboration features.",
+          "category": "Mobile App",
+          "status": "ongoing",
+          "role": "App Developer",
+          "start_date": "2026-03-12",
+          "end_date": null,
+          "github_url": null,
+          "live_demo_url": null,
+          "app_icon_url": "https://ucegexozgusoqcecqxxl.supabase.co/storage/v1/object/public/portfolio/projects/icons/ljU3dYMATiy1O0C8TtT3CzzU.png",
+          "featured_image_url": "https://ucegexozgusoqcecqxxl.supabase.co/storage/v1/object/public/portfolio/projects/PCLlcgEzrmJ0F5fSO9z3Mu8K.jpg",
+          "tech_stack": [
+            "Flutter",
+            "Dart",
+            "PHP",
+            "GCP"
+          ],
+          "is_featured": true,
+          "is_published": true,
+          "sort_order": 4,
+          "created_at": "2026-05-27T03:53:39.000000Z",
+          "updated_at": "2026-05-28T11:50:24.000000Z"
+        },
+        {
+          "id": 65,
+          "title": "B1T1 RTD",
+          "slug": "b1t1-rtd",
+          "short_description": "Platform for ready-to-drink product ordering and backend service integration.",
+          "full_description": "Developed a platform for ready-to-drink product ordering and backend service integration.",
+          "category": "Mobile App",
+          "status": "not-launched",
+          "role": "App Developer",
+          "start_date": "2026-03-18",
+          "end_date": null,
+          "github_url": null,
+          "live_demo_url": null,
+          "app_icon_url": "https://ucegexozgusoqcecqxxl.supabase.co/storage/v1/object/public/portfolio/projects/icons/epmwBTEHSbJfJJW9YshTwOrr.png",
+          "featured_image_url": "https://ucegexozgusoqcecqxxl.supabase.co/storage/v1/object/public/portfolio/projects/WLLtbL8VIwgNCfK7FcAi3evr.jpg",
+          "tech_stack": [
+            "Flutter",
+            "Dart",
+            "PHP",
+            "GCP"
+          ],
+          "is_featured": false,
+          "is_published": true,
+          "sort_order": 5,
+          "created_at": "2026-05-27T03:53:40.000000Z",
+          "updated_at": "2026-05-28T11:50:49.000000Z"
+        },
+        {
+          "id": 66,
+          "title": "JM Pocket",
+          "slug": "jm-pocket",
+          "short_description": "Executive communication and coordination application for managing employee and franchise operations.",
+          "full_description": "Created an executive communication and coordination application for managing employee and franchise operations.",
+          "category": "Mobile App",
+          "status": "ongoing",
+          "role": "App Developer",
+          "start_date": "2026-04-21",
+          "end_date": null,
+          "github_url": null,
+          "live_demo_url": null,
+          "app_icon_url": "https://ucegexozgusoqcecqxxl.supabase.co/storage/v1/object/public/portfolio/projects/icons/ADZM3RMaHZrSPcD1TYOYR93l.png",
+          "featured_image_url": "https://ucegexozgusoqcecqxxl.supabase.co/storage/v1/object/public/portfolio/projects/6z1SkcSWkmffH8HjPG7jYtpq.jpg",
+          "tech_stack": [
+            "Flutter",
+            "Dart",
+            "PHP",
+            "GCP"
+          ],
+          "is_featured": true,
+          "is_published": true,
+          "sort_order": 6,
+          "created_at": "2026-05-27T03:53:40.000000Z",
+          "updated_at": "2026-05-28T12:03:44.000000Z"
+        },
+        {
+          "id": 67,
+          "title": "Wonder Society",
+          "slug": "wonder-society",
+          "short_description": "Membership platform with ordering, schedule booking, CCTV monitoring, and family progress tracking.",
+          "full_description": "Developing a membership platform with ordering, schedule booking, CCTV monitoring, and family progress tracking features, including full backend API development from scratch.",
+          "category": "Web & Mobile",
+          "status": "in-progress",
+          "role": "Full-stack",
+          "start_date": null,
+          "end_date": null,
+          "github_url": null,
+          "live_demo_url": null,
+          "app_icon_url": "https://ucegexozgusoqcecqxxl.supabase.co/storage/v1/object/public/portfolio/projects/icons/Z8LVcuwwE0rlyrqIFw7cPm50.png",
+          "featured_image_url": "https://ucegexozgusoqcecqxxl.supabase.co/storage/v1/object/public/portfolio/projects/QcS1vevpO0UjkUhAmnt1A8CV.jpg",
+          "tech_stack": [
+            "Flutter",
+            "PHP",
+            "Laravel",
+            "RESTful API"
+          ],
+          "is_featured": true,
+          "is_published": true,
+          "sort_order": 7,
+          "created_at": "2026-05-27T03:53:40.000000Z",
+          "updated_at": "2026-05-28T11:56:28.000000Z"
+        },
+        {
+          "id": 68,
+          "title": "Logbook",
+          "slug": "logbook",
+          "short_description": "Digital construction and work-progress logging application.",
+          "full_description": "Built a digital construction and work progress logging application to streamline traditional reporting and monitoring workflows.",
+          "category": "Mobile App",
+          "status": "ongoing",
+          "role": "App Developer",
+          "start_date": "2026-05-19",
+          "end_date": null,
+          "github_url": null,
+          "live_demo_url": null,
+          "app_icon_url": "https://ucegexozgusoqcecqxxl.supabase.co/storage/v1/object/public/portfolio/projects/icons/4uwHeQOtPRcsDqqHkmA9wdW3.png",
+          "featured_image_url": "https://ucegexozgusoqcecqxxl.supabase.co/storage/v1/object/public/portfolio/projects/qpim680UpojgcJrGxVpEaNoW.jpg",
+          "tech_stack": [
+            "Flutter",
+            "Dart",
+            "PHP",
+            "GCP"
+          ],
+          "is_featured": false,
+          "is_published": true,
+          "sort_order": 8,
+          "created_at": "2026-05-27T03:53:40.000000Z",
+          "updated_at": "2026-05-28T11:51:38.000000Z"
+        },
+        {
+          "id": 69,
+          "title": "Connect Plus",
+          "slug": "connect-plus",
+          "short_description": "Partnership management application for communication and collaboration workflows.",
+          "full_description": "Designed and initiated development for a partnership management application focused on communication and collaboration workflows. UI design completed Dec 3, 2025; development started but postponed.",
+          "category": "Mobile App",
+          "status": "paused",
+          "role": "App Developer & UI Designer",
+          "start_date": "2025-12-03",
+          "end_date": null,
+          "github_url": null,
+          "live_demo_url": null,
+          "app_icon_url": null,
+          "featured_image_url": "https://ucegexozgusoqcecqxxl.supabase.co/storage/v1/object/public/portfolio/projects/XaXlM2Yq45R5p2aBsazIHB5L.jpg",
+          "tech_stack": [
+            "Flutter",
+            "Figma"
+          ],
+          "is_featured": false,
+          "is_published": true,
+          "sort_order": 9,
+          "created_at": "2026-05-27T03:53:40.000000Z",
+          "updated_at": "2026-05-28T12:06:07.000000Z"
+        },
+        {
+          "id": 70,
+          "title": "FireFly — Movie Booking System",
+          "slug": "firefly-movie-booking-system",
+          "short_description": "Full-stack movie booking platform with scheduling and ticket management.",
+          "full_description": "Developed a full-stack movie booking platform using HTML, CSS, JavaScript, PHP, and MySQL with scheduling and ticket management functionalities.",
+          "category": "Academic",
+          "status": "completed",
+          "role": "Full-stack",
+          "start_date": null,
+          "end_date": null,
+          "github_url": null,
+          "live_demo_url": null,
+          "app_icon_url": null,
+          "featured_image_url": "https://ucegexozgusoqcecqxxl.supabase.co/storage/v1/object/public/portfolio/projects/DNY3cUGE94EUvqPM4wTA6TsK.jpg",
+          "tech_stack": [
+            "PHP",
+            "MySQL",
+            "HTML",
+            "CSS",
+            "JavaScript"
+          ],
+          "is_featured": false,
+          "is_published": true,
+          "sort_order": 10,
+          "created_at": "2026-05-27T03:53:41.000000Z",
+          "updated_at": "2026-05-28T12:03:28.000000Z"
+        },
+        {
+          "id": 71,
+          "title": "GRILLEDEC — Restaurant Website",
+          "slug": "grilledec-restaurant-website",
+          "short_description": "Responsive restaurant website showcasing menus, services, and business information.",
+          "full_description": "Created a responsive restaurant website showcasing menus, services, and business information using HTML, CSS, and JavaScript.",
+          "category": "Academic",
+          "status": "completed",
+          "role": "Frontend Developer",
+          "start_date": null,
+          "end_date": null,
+          "github_url": null,
+          "live_demo_url": null,
+          "app_icon_url": null,
+          "featured_image_url": "https://ucegexozgusoqcecqxxl.supabase.co/storage/v1/object/public/portfolio/projects/jFymHinSSMTIFFGbOBw5qIaL.jpg",
+          "tech_stack": [
+            "HTML",
+            "CSS",
+            "JavaScript"
+          ],
+          "is_featured": false,
+          "is_published": true,
+          "sort_order": 11,
+          "created_at": "2026-05-27T03:53:41.000000Z",
+          "updated_at": "2026-05-28T12:06:46.000000Z"
+        },
+        {
+          "id": 72,
+          "title": "Portfolio Platform",
+          "slug": "portfolio-platform",
+          "short_description": "Full-stack portfolio site with public pages and an admin CMS.",
+          "full_description": "A dynamic portfolio platform with public pages, blogs, comment moderation, contact form, media library, and an admin CMS. Frontend: Next.js + TypeScript + TailwindCSS. Backend: Laravel + Sanctum (SPA cookie auth). Database: Supabase Postgres. Storage: Supabase Storage.",
+          "category": "Web App",
+          "status": "completed",
+          "role": "Full-stack",
+          "start_date": null,
+          "end_date": null,
+          "github_url": "https://github.com/VINCENT-DIGITALS/portfolio-admin",
+          "live_demo_url": null,
+          "app_icon_url": null,
+          "featured_image_url": "https://ucegexozgusoqcecqxxl.supabase.co/storage/v1/object/public/portfolio/projects/yjIQv2bDH4bb4s6uc9IcQEiU.jpg",
+          "tech_stack": [
+            "Next.js",
+            "TypeScript",
+            "TailwindCSS",
+            "Laravel",
+            "PostgreSQL",
+            "Supabase"
+          ],
+          "is_featured": false,
+          "is_published": true,
+          "sort_order": 12,
+          "created_at": "2026-05-27T03:53:42.000000Z",
+          "updated_at": "2026-05-28T12:03:15.000000Z"
+        }
+      ]
+    },
+    "/api/projects?featured=1": {
+      "data": [
+        {
+          "id": 62,
+          "title": "B1T1 Takeaway Coffee — Customer App",
+          "slug": "b1t1-takeaway-coffee-customer-app",
+          "short_description": "Consumer application for product ordering, membership tracking, and customer engagement.",
+          "full_description": "Contributed to the development and maintenance of a consumer application for product ordering, membership tracking, and customer engagement features.",
+          "category": "Mobile App",
+          "status": "ongoing",
+          "role": "App Developer",
+          "start_date": "2025-11-10",
+          "end_date": null,
+          "github_url": null,
+          "live_demo_url": null,
+          "app_icon_url": "https://ucegexozgusoqcecqxxl.supabase.co/storage/v1/object/public/portfolio/projects/icons/9etHluBCprvIeoqpsozY90Ne.png",
+          "featured_image_url": "https://ucegexozgusoqcecqxxl.supabase.co/storage/v1/object/public/portfolio/projects/3avWPF9RmJtPC63CAg7GvEWj.jpg",
+          "tech_stack": [
+            "Flutter",
+            "Dart",
+            "PHP",
+            "GCP"
+          ],
+          "is_featured": true,
+          "is_published": true,
+          "sort_order": 2,
+          "created_at": "2026-05-27T03:53:39.000000Z",
+          "updated_at": "2026-05-28T11:48:05.000000Z"
+        },
+        {
+          "id": 64,
+          "title": "B1T1 World",
+          "slug": "b1t1-world",
+          "short_description": "Internal employee communication and coordination platform with task tracking and franchise collaboration.",
+          "full_description": "Built an internal employee communication and coordination platform with task tracking and franchise collaboration features.",
+          "category": "Mobile App",
+          "status": "ongoing",
+          "role": "App Developer",
+          "start_date": "2026-03-12",
+          "end_date": null,
+          "github_url": null,
+          "live_demo_url": null,
+          "app_icon_url": "https://ucegexozgusoqcecqxxl.supabase.co/storage/v1/object/public/portfolio/projects/icons/ljU3dYMATiy1O0C8TtT3CzzU.png",
+          "featured_image_url": "https://ucegexozgusoqcecqxxl.supabase.co/storage/v1/object/public/portfolio/projects/PCLlcgEzrmJ0F5fSO9z3Mu8K.jpg",
+          "tech_stack": [
+            "Flutter",
+            "Dart",
+            "PHP",
+            "GCP"
+          ],
+          "is_featured": true,
+          "is_published": true,
+          "sort_order": 4,
+          "created_at": "2026-05-27T03:53:39.000000Z",
+          "updated_at": "2026-05-28T11:50:24.000000Z"
+        },
+        {
+          "id": 66,
+          "title": "JM Pocket",
+          "slug": "jm-pocket",
+          "short_description": "Executive communication and coordination application for managing employee and franchise operations.",
+          "full_description": "Created an executive communication and coordination application for managing employee and franchise operations.",
+          "category": "Mobile App",
+          "status": "ongoing",
+          "role": "App Developer",
+          "start_date": "2026-04-21",
+          "end_date": null,
+          "github_url": null,
+          "live_demo_url": null,
+          "app_icon_url": "https://ucegexozgusoqcecqxxl.supabase.co/storage/v1/object/public/portfolio/projects/icons/ADZM3RMaHZrSPcD1TYOYR93l.png",
+          "featured_image_url": "https://ucegexozgusoqcecqxxl.supabase.co/storage/v1/object/public/portfolio/projects/6z1SkcSWkmffH8HjPG7jYtpq.jpg",
+          "tech_stack": [
+            "Flutter",
+            "Dart",
+            "PHP",
+            "GCP"
+          ],
+          "is_featured": true,
+          "is_published": true,
+          "sort_order": 6,
+          "created_at": "2026-05-27T03:53:40.000000Z",
+          "updated_at": "2026-05-28T12:03:44.000000Z"
+        },
+        {
+          "id": 67,
+          "title": "Wonder Society",
+          "slug": "wonder-society",
+          "short_description": "Membership platform with ordering, schedule booking, CCTV monitoring, and family progress tracking.",
+          "full_description": "Developing a membership platform with ordering, schedule booking, CCTV monitoring, and family progress tracking features, including full backend API development from scratch.",
+          "category": "Web & Mobile",
+          "status": "in-progress",
+          "role": "Full-stack",
+          "start_date": null,
+          "end_date": null,
+          "github_url": null,
+          "live_demo_url": null,
+          "app_icon_url": "https://ucegexozgusoqcecqxxl.supabase.co/storage/v1/object/public/portfolio/projects/icons/Z8LVcuwwE0rlyrqIFw7cPm50.png",
+          "featured_image_url": "https://ucegexozgusoqcecqxxl.supabase.co/storage/v1/object/public/portfolio/projects/QcS1vevpO0UjkUhAmnt1A8CV.jpg",
+          "tech_stack": [
+            "Flutter",
+            "PHP",
+            "Laravel",
+            "RESTful API"
+          ],
+          "is_featured": true,
+          "is_published": true,
+          "sort_order": 7,
+          "created_at": "2026-05-27T03:53:40.000000Z",
+          "updated_at": "2026-05-28T11:56:28.000000Z"
+        }
+      ]
+    },
+    "/api/experiences": {
+      "data": [
+        {
+          "id": 19,
+          "company": "Myracle Innovation Inc.",
+          "position": "App Developer",
+          "description": "Started as Junior App Developer; promoted to Senior App Developer on January 11, 2026. Responsible for developing and maintaining multiple mobile applications and their backend APIs (PHP, GCP) for various clients.",
+          "start_date": "2025-08-01",
+          "end_date": null,
+          "is_current": true,
+          "sort_order": 0
+        },
+        {
+          "id": 20,
+          "company": "Builders of Information Technology Society (BITS)",
+          "position": "Resident Member",
+          "description": "Gained experience in producing graphics for events, promotions, and organizational activities.\nContributed to providing fundamentals programming tutorials to lower-year students as part of the organization's outreach and skill-building initiatives.",
+          "start_date": "2024-08-01",
+          "end_date": "2025-08-31",
+          "is_current": false,
+          "sort_order": 1
+        },
+        {
+          "id": 21,
+          "company": "PhilRice – Central Experiment Station",
+          "position": "On-the-Job Training",
+          "description": "Contributed to the development of a service request management system for ICT-related issues through web and mobile platforms, using Laravel, Flutter, MySQL, and phpMyAdmin.",
+          "start_date": "2025-02-01",
+          "end_date": "2025-05-31",
+          "is_current": false,
+          "sort_order": 2
+        }
+      ]
+    },
+    "/api/education": {
+      "data": [
+        {
+          "id": 22,
+          "school": "Central Luzon State University",
+          "degree": "College — Bachelor of Science in Information Technology",
+          "description": "A state university in the Philippines, known for its excellence in agricultural sciences, research, and technology, contributing significantly to national development and innovation. Graduated Cum Laude with a GPA of 1.59. Coursework included software engineering, database management, process design, and project management.",
+          "start_date": "2021-08-01",
+          "end_date": "2025-07-31",
+          "sort_order": 0
+        },
+        {
+          "id": 23,
+          "school": "Wesleyan University-Philippines – Aurora Campus",
+          "degree": "Senior High — Humanities and Social Sciences",
+          "description": "A private educational institution known for its strong academic programs and community involvement, providing quality education to students in the Aurora region.",
+          "start_date": "2019-08-01",
+          "end_date": "2021-05-31",
+          "sort_order": 1
+        },
+        {
+          "id": 24,
+          "school": "Maria Aurora National High School",
+          "degree": "Junior High",
+          "description": "A public educational institution in Aurora, committed to providing quality secondary education and fostering student development through academic and extracurricular activities.",
+          "start_date": "2015-06-01",
+          "end_date": "2019-04-30",
+          "sort_order": 2
+        },
+        {
+          "id": 25,
+          "school": "Maria Aurora Central School",
+          "degree": "Elementary",
+          "description": "A public elementary school in Aurora, dedicated to nurturing young learners with a strong foundation in academics, values, and holistic development.",
+          "start_date": "2009-06-01",
+          "end_date": "2015-03-31",
+          "sort_order": 3
+        }
+      ]
+    },
+    "/api/certificates": {
+      "data": [
+        {
+          "id": 21,
+          "title": "Cum Laude, Class of 2025",
+          "issuer": "Central Luzon State University",
+          "description": "Graduated with honors, recognizing academic excellence and dedication throughout the Bachelor of Science in Information Technology program.",
+          "issue_date": "2025-07-31",
+          "certificate_url": null,
+          "image_url": null,
+          "sort_order": 0
+        },
+        {
+          "id": 22,
+          "title": "Google Workspace Specialization",
+          "issuer": "Google",
+          "description": "Earned a specialization in Google Workspace tools, showcasing skills in collaboration and productivity through advanced use of Google applications.",
+          "issue_date": "2024-01-01",
+          "certificate_url": "https://vincent-digitals.github.io/mainportfolio/static/media/GOOGLE_WORSPACE_SPECIALIZATION.e3cf81fe5d98252077d7.pdf",
+          "image_url": null,
+          "sort_order": 1
+        },
+        {
+          "id": 23,
+          "title": "Participant, 10th TOPCIT Philippines, 2024",
+          "issuer": "TOPCIT Philippines",
+          "description": "Participated in the 10th TOPCIT Philippines assessment program to demonstrate technical problem-solving skills.",
+          "issue_date": "2024-01-01",
+          "certificate_url": null,
+          "image_url": null,
+          "sort_order": 2
+        },
+        {
+          "id": 24,
+          "title": "Regional Finalist, Philippine Startup Challenge 9, 2024",
+          "issuer": "Philippine Startup Challenge",
+          "description": "Achieved Top 15 regional finalist position for a startup idea and business plan in the Philippine Startup Challenge 9.",
+          "issue_date": "2024-01-01",
+          "certificate_url": null,
+          "image_url": null,
+          "sort_order": 3
+        }
+      ]
+    },
+    "/api/blogs": {
+      "data": [
+        {
+          "id": 1,
+          "title": "Building a Portfolio with Next.js & Laravel",
+          "slug": "building-a-portfolio-with-nextjs-laravel",
+          "excerpt": "A walkthrough of how this portfolio platform is built.",
+          "cover_image_url": null,
+          "tags": [
+            "nextjs",
+            "laravel",
+            "supabase"
+          ],
+          "is_published": true,
+          "published_at": "2026-05-27T03:53:45.000000Z",
+          "created_at": "2026-05-26T06:33:35.000000Z",
+          "updated_at": "2026-05-27T03:53:45.000000Z"
+        },
+        {
+          "id": 2,
+          "title": "Sanctum SPA Cookie Auth, the Right Way",
+          "slug": "sanctum-spa-cookie-auth-the-right-way",
+          "excerpt": "Configure CORS + Sanctum so Next.js can call your Laravel API safely.",
+          "cover_image_url": null,
+          "tags": [
+            "laravel",
+            "sanctum",
+            "auth"
+          ],
+          "is_published": true,
+          "published_at": "2026-05-24T03:53:45.000000Z",
+          "created_at": "2026-05-26T06:33:36.000000Z",
+          "updated_at": "2026-05-27T03:53:45.000000Z"
+        }
+      ]
+    },
+    "/api/comments?general_only=1": {
+      "data": []
+    },
+    "/api/projects/b1t1-franchisee": {
+      "data": {
+        "id": 60,
+        "title": "B1T1 Franchisee",
+        "slug": "b1t1-franchisee",
+        "short_description": "Franchisee management application with operational monitoring, product ordering, and backend API integration.",
+        "full_description": "Developed and maintained a franchisee management application with operational monitoring, product ordering, and backend API integration using Flutter, PHP, and GCP. Built for the B1T1 Takeaway Coffee client.",
+        "category": "Mobile App",
+        "status": "ongoing",
+        "role": "App Developer",
+        "start_date": "2025-09-21",
+        "end_date": null,
+        "github_url": null,
+        "live_demo_url": null,
+        "app_icon_url": "https://ucegexozgusoqcecqxxl.supabase.co/storage/v1/object/public/portfolio/projects/icons/j5A94zEAWI2Rqc7fiB0eg720.png",
+        "featured_image_url": "https://ucegexozgusoqcecqxxl.supabase.co/storage/v1/object/public/portfolio/projects/IjXalHcMXDIHBzUJnmQebuEZ.png",
+        "tech_stack": [
+          "Flutter",
+          "Dart",
+          "PHP",
+          "GCP",
+          "RESTful API"
+        ],
+        "is_featured": false,
+        "is_published": true,
+        "sort_order": 0,
+        "images": [],
+        "created_at": "2026-05-27T03:53:39.000000Z",
+        "updated_at": "2026-05-28T11:18:22.000000Z"
+      }
+    },
+    "/api/comments?project_id=60": {
+      "data": []
+    },
+    "/api/projects/b1t1-barista": {
+      "data": {
+        "id": 61,
+        "title": "B1T1 Barista",
+        "slug": "b1t1-barista",
+        "short_description": "Barista operations app with reporting, monitoring, inventory ordering, and real-time backend integration.",
+        "full_description": "Built and maintained a barista operations app featuring reporting, monitoring, inventory ordering, and real-time backend integration. Part of the B1T1 Takeaway Coffee ecosystem.",
+        "category": "Mobile App",
+        "status": "ongoing",
+        "role": "App Developer",
+        "start_date": "2025-10-07",
+        "end_date": null,
+        "github_url": null,
+        "live_demo_url": null,
+        "app_icon_url": "https://ucegexozgusoqcecqxxl.supabase.co/storage/v1/object/public/portfolio/projects/icons/ohjJebpXfR6pszYzYUPHt8aM.png",
+        "featured_image_url": "https://ucegexozgusoqcecqxxl.supabase.co/storage/v1/object/public/portfolio/projects/Z59fNiLYkMLf8P9GrBzubSZ1.jpg",
+        "tech_stack": [
+          "Flutter",
+          "Dart",
+          "PHP",
+          "GCP"
+        ],
+        "is_featured": false,
+        "is_published": true,
+        "sort_order": 1,
+        "images": [],
+        "created_at": "2026-05-27T03:53:39.000000Z",
+        "updated_at": "2026-05-28T11:48:37.000000Z"
+      }
+    },
+    "/api/comments?project_id=61": {
+      "data": []
+    },
+    "/api/projects/b1t1-takeaway-coffee-customer-app": {
+      "data": {
+        "id": 62,
+        "title": "B1T1 Takeaway Coffee — Customer App",
+        "slug": "b1t1-takeaway-coffee-customer-app",
+        "short_description": "Consumer application for product ordering, membership tracking, and customer engagement.",
+        "full_description": "Contributed to the development and maintenance of a consumer application for product ordering, membership tracking, and customer engagement features.",
+        "category": "Mobile App",
+        "status": "ongoing",
+        "role": "App Developer",
+        "start_date": "2025-11-10",
+        "end_date": null,
+        "github_url": null,
+        "live_demo_url": null,
+        "app_icon_url": "https://ucegexozgusoqcecqxxl.supabase.co/storage/v1/object/public/portfolio/projects/icons/9etHluBCprvIeoqpsozY90Ne.png",
+        "featured_image_url": "https://ucegexozgusoqcecqxxl.supabase.co/storage/v1/object/public/portfolio/projects/3avWPF9RmJtPC63CAg7GvEWj.jpg",
+        "tech_stack": [
+          "Flutter",
+          "Dart",
+          "PHP",
+          "GCP"
+        ],
+        "is_featured": true,
+        "is_published": true,
+        "sort_order": 2,
+        "images": [],
+        "created_at": "2026-05-27T03:53:39.000000Z",
+        "updated_at": "2026-05-28T11:48:05.000000Z"
+      }
+    },
+    "/api/comments?project_id=62": {
+      "data": []
+    },
+    "/api/projects/b1t1-rider": {
+      "data": {
+        "id": 63,
+        "title": "B1T1 Rider",
+        "slug": "b1t1-rider",
+        "short_description": "Delivery service app with order coordination and backend API integration.",
+        "full_description": "Developed delivery service functionalities connected to the customer application, including order coordination and backend API integration.",
+        "category": "Mobile App",
+        "status": "ongoing",
+        "role": "App Developer",
+        "start_date": "2025-11-10",
+        "end_date": null,
+        "github_url": null,
+        "live_demo_url": null,
+        "app_icon_url": "https://ucegexozgusoqcecqxxl.supabase.co/storage/v1/object/public/portfolio/projects/icons/gopLZxBcZMmWJkZVkdstpM6e.png",
+        "featured_image_url": "https://ucegexozgusoqcecqxxl.supabase.co/storage/v1/object/public/portfolio/projects/EzUpe1eEK2NrRiynnV8x5ELW.jpg",
+        "tech_stack": [
+          "Flutter",
+          "Dart",
+          "PHP",
+          "GCP"
+        ],
+        "is_featured": false,
+        "is_published": true,
+        "sort_order": 3,
+        "images": [],
+        "created_at": "2026-05-27T03:53:39.000000Z",
+        "updated_at": "2026-05-28T11:49:52.000000Z"
+      }
+    },
+    "/api/comments?project_id=63": {
+      "data": []
+    },
+    "/api/projects/b1t1-world": {
+      "data": {
+        "id": 64,
+        "title": "B1T1 World",
+        "slug": "b1t1-world",
+        "short_description": "Internal employee communication and coordination platform with task tracking and franchise collaboration.",
+        "full_description": "Built an internal employee communication and coordination platform with task tracking and franchise collaboration features.",
+        "category": "Mobile App",
+        "status": "ongoing",
+        "role": "App Developer",
+        "start_date": "2026-03-12",
+        "end_date": null,
+        "github_url": null,
+        "live_demo_url": null,
+        "app_icon_url": "https://ucegexozgusoqcecqxxl.supabase.co/storage/v1/object/public/portfolio/projects/icons/ljU3dYMATiy1O0C8TtT3CzzU.png",
+        "featured_image_url": "https://ucegexozgusoqcecqxxl.supabase.co/storage/v1/object/public/portfolio/projects/PCLlcgEzrmJ0F5fSO9z3Mu8K.jpg",
+        "tech_stack": [
+          "Flutter",
+          "Dart",
+          "PHP",
+          "GCP"
+        ],
+        "is_featured": true,
+        "is_published": true,
+        "sort_order": 4,
+        "images": [],
+        "created_at": "2026-05-27T03:53:39.000000Z",
+        "updated_at": "2026-05-28T11:50:24.000000Z"
+      }
+    },
+    "/api/comments?project_id=64": {
+      "data": []
+    },
+    "/api/projects/b1t1-rtd": {
+      "data": {
+        "id": 65,
+        "title": "B1T1 RTD",
+        "slug": "b1t1-rtd",
+        "short_description": "Platform for ready-to-drink product ordering and backend service integration.",
+        "full_description": "Developed a platform for ready-to-drink product ordering and backend service integration.",
+        "category": "Mobile App",
+        "status": "not-launched",
+        "role": "App Developer",
+        "start_date": "2026-03-18",
+        "end_date": null,
+        "github_url": null,
+        "live_demo_url": null,
+        "app_icon_url": "https://ucegexozgusoqcecqxxl.supabase.co/storage/v1/object/public/portfolio/projects/icons/epmwBTEHSbJfJJW9YshTwOrr.png",
+        "featured_image_url": "https://ucegexozgusoqcecqxxl.supabase.co/storage/v1/object/public/portfolio/projects/WLLtbL8VIwgNCfK7FcAi3evr.jpg",
+        "tech_stack": [
+          "Flutter",
+          "Dart",
+          "PHP",
+          "GCP"
+        ],
+        "is_featured": false,
+        "is_published": true,
+        "sort_order": 5,
+        "images": [],
+        "created_at": "2026-05-27T03:53:40.000000Z",
+        "updated_at": "2026-05-28T11:50:49.000000Z"
+      }
+    },
+    "/api/comments?project_id=65": {
+      "data": []
+    },
+    "/api/projects/jm-pocket": {
+      "data": {
+        "id": 66,
+        "title": "JM Pocket",
+        "slug": "jm-pocket",
+        "short_description": "Executive communication and coordination application for managing employee and franchise operations.",
+        "full_description": "Created an executive communication and coordination application for managing employee and franchise operations.",
+        "category": "Mobile App",
+        "status": "ongoing",
+        "role": "App Developer",
+        "start_date": "2026-04-21",
+        "end_date": null,
+        "github_url": null,
+        "live_demo_url": null,
+        "app_icon_url": "https://ucegexozgusoqcecqxxl.supabase.co/storage/v1/object/public/portfolio/projects/icons/ADZM3RMaHZrSPcD1TYOYR93l.png",
+        "featured_image_url": "https://ucegexozgusoqcecqxxl.supabase.co/storage/v1/object/public/portfolio/projects/6z1SkcSWkmffH8HjPG7jYtpq.jpg",
+        "tech_stack": [
+          "Flutter",
+          "Dart",
+          "PHP",
+          "GCP"
+        ],
+        "is_featured": true,
+        "is_published": true,
+        "sort_order": 6,
+        "images": [],
+        "created_at": "2026-05-27T03:53:40.000000Z",
+        "updated_at": "2026-05-28T12:03:44.000000Z"
+      }
+    },
+    "/api/comments?project_id=66": {
+      "data": []
+    },
+    "/api/projects/wonder-society": {
+      "data": {
+        "id": 67,
+        "title": "Wonder Society",
+        "slug": "wonder-society",
+        "short_description": "Membership platform with ordering, schedule booking, CCTV monitoring, and family progress tracking.",
+        "full_description": "Developing a membership platform with ordering, schedule booking, CCTV monitoring, and family progress tracking features, including full backend API development from scratch.",
+        "category": "Web & Mobile",
+        "status": "in-progress",
+        "role": "Full-stack",
+        "start_date": null,
+        "end_date": null,
+        "github_url": null,
+        "live_demo_url": null,
+        "app_icon_url": "https://ucegexozgusoqcecqxxl.supabase.co/storage/v1/object/public/portfolio/projects/icons/Z8LVcuwwE0rlyrqIFw7cPm50.png",
+        "featured_image_url": "https://ucegexozgusoqcecqxxl.supabase.co/storage/v1/object/public/portfolio/projects/QcS1vevpO0UjkUhAmnt1A8CV.jpg",
+        "tech_stack": [
+          "Flutter",
+          "PHP",
+          "Laravel",
+          "RESTful API"
+        ],
+        "is_featured": true,
+        "is_published": true,
+        "sort_order": 7,
+        "images": [],
+        "created_at": "2026-05-27T03:53:40.000000Z",
+        "updated_at": "2026-05-28T11:56:28.000000Z"
+      }
+    },
+    "/api/comments?project_id=67": {
+      "data": []
+    },
+    "/api/projects/logbook": {
+      "data": {
+        "id": 68,
+        "title": "Logbook",
+        "slug": "logbook",
+        "short_description": "Digital construction and work-progress logging application.",
+        "full_description": "Built a digital construction and work progress logging application to streamline traditional reporting and monitoring workflows.",
+        "category": "Mobile App",
+        "status": "ongoing",
+        "role": "App Developer",
+        "start_date": "2026-05-19",
+        "end_date": null,
+        "github_url": null,
+        "live_demo_url": null,
+        "app_icon_url": "https://ucegexozgusoqcecqxxl.supabase.co/storage/v1/object/public/portfolio/projects/icons/4uwHeQOtPRcsDqqHkmA9wdW3.png",
+        "featured_image_url": "https://ucegexozgusoqcecqxxl.supabase.co/storage/v1/object/public/portfolio/projects/qpim680UpojgcJrGxVpEaNoW.jpg",
+        "tech_stack": [
+          "Flutter",
+          "Dart",
+          "PHP",
+          "GCP"
+        ],
+        "is_featured": false,
+        "is_published": true,
+        "sort_order": 8,
+        "images": [],
+        "created_at": "2026-05-27T03:53:40.000000Z",
+        "updated_at": "2026-05-28T11:51:38.000000Z"
+      }
+    },
+    "/api/comments?project_id=68": {
+      "data": []
+    },
+    "/api/projects/connect-plus": {
+      "data": {
+        "id": 69,
+        "title": "Connect Plus",
+        "slug": "connect-plus",
+        "short_description": "Partnership management application for communication and collaboration workflows.",
+        "full_description": "Designed and initiated development for a partnership management application focused on communication and collaboration workflows. UI design completed Dec 3, 2025; development started but postponed.",
+        "category": "Mobile App",
+        "status": "paused",
+        "role": "App Developer & UI Designer",
+        "start_date": "2025-12-03",
+        "end_date": null,
+        "github_url": null,
+        "live_demo_url": null,
+        "app_icon_url": null,
+        "featured_image_url": "https://ucegexozgusoqcecqxxl.supabase.co/storage/v1/object/public/portfolio/projects/XaXlM2Yq45R5p2aBsazIHB5L.jpg",
+        "tech_stack": [
+          "Flutter",
+          "Figma"
+        ],
+        "is_featured": false,
+        "is_published": true,
+        "sort_order": 9,
+        "images": [],
+        "created_at": "2026-05-27T03:53:40.000000Z",
+        "updated_at": "2026-05-28T12:06:07.000000Z"
+      }
+    },
+    "/api/comments?project_id=69": {
+      "data": []
+    },
+    "/api/projects/firefly-movie-booking-system": {
+      "data": {
+        "id": 70,
+        "title": "FireFly — Movie Booking System",
+        "slug": "firefly-movie-booking-system",
+        "short_description": "Full-stack movie booking platform with scheduling and ticket management.",
+        "full_description": "Developed a full-stack movie booking platform using HTML, CSS, JavaScript, PHP, and MySQL with scheduling and ticket management functionalities.",
+        "category": "Academic",
+        "status": "completed",
+        "role": "Full-stack",
+        "start_date": null,
+        "end_date": null,
+        "github_url": null,
+        "live_demo_url": null,
+        "app_icon_url": null,
+        "featured_image_url": "https://ucegexozgusoqcecqxxl.supabase.co/storage/v1/object/public/portfolio/projects/DNY3cUGE94EUvqPM4wTA6TsK.jpg",
+        "tech_stack": [
+          "PHP",
+          "MySQL",
+          "HTML",
+          "CSS",
+          "JavaScript"
+        ],
+        "is_featured": false,
+        "is_published": true,
+        "sort_order": 10,
+        "images": [],
+        "created_at": "2026-05-27T03:53:41.000000Z",
+        "updated_at": "2026-05-28T12:03:28.000000Z"
+      }
+    },
+    "/api/comments?project_id=70": {
+      "data": []
+    },
+    "/api/projects/grilledec-restaurant-website": {
+      "data": {
+        "id": 71,
+        "title": "GRILLEDEC — Restaurant Website",
+        "slug": "grilledec-restaurant-website",
+        "short_description": "Responsive restaurant website showcasing menus, services, and business information.",
+        "full_description": "Created a responsive restaurant website showcasing menus, services, and business information using HTML, CSS, and JavaScript.",
+        "category": "Academic",
+        "status": "completed",
+        "role": "Frontend Developer",
+        "start_date": null,
+        "end_date": null,
+        "github_url": null,
+        "live_demo_url": null,
+        "app_icon_url": null,
+        "featured_image_url": "https://ucegexozgusoqcecqxxl.supabase.co/storage/v1/object/public/portfolio/projects/jFymHinSSMTIFFGbOBw5qIaL.jpg",
+        "tech_stack": [
+          "HTML",
+          "CSS",
+          "JavaScript"
+        ],
+        "is_featured": false,
+        "is_published": true,
+        "sort_order": 11,
+        "images": [],
+        "created_at": "2026-05-27T03:53:41.000000Z",
+        "updated_at": "2026-05-28T12:06:46.000000Z"
+      }
+    },
+    "/api/comments?project_id=71": {
+      "data": []
+    },
+    "/api/projects/portfolio-platform": {
+      "data": {
+        "id": 72,
+        "title": "Portfolio Platform",
+        "slug": "portfolio-platform",
+        "short_description": "Full-stack portfolio site with public pages and an admin CMS.",
+        "full_description": "A dynamic portfolio platform with public pages, blogs, comment moderation, contact form, media library, and an admin CMS. Frontend: Next.js + TypeScript + TailwindCSS. Backend: Laravel + Sanctum (SPA cookie auth). Database: Supabase Postgres. Storage: Supabase Storage.",
+        "category": "Web App",
+        "status": "completed",
+        "role": "Full-stack",
+        "start_date": null,
+        "end_date": null,
+        "github_url": "https://github.com/VINCENT-DIGITALS/portfolio-admin",
+        "live_demo_url": null,
+        "app_icon_url": null,
+        "featured_image_url": "https://ucegexozgusoqcecqxxl.supabase.co/storage/v1/object/public/portfolio/projects/yjIQv2bDH4bb4s6uc9IcQEiU.jpg",
+        "tech_stack": [
+          "Next.js",
+          "TypeScript",
+          "TailwindCSS",
+          "Laravel",
+          "PostgreSQL",
+          "Supabase"
+        ],
+        "is_featured": false,
+        "is_published": true,
+        "sort_order": 12,
+        "images": [],
+        "created_at": "2026-05-27T03:53:42.000000Z",
+        "updated_at": "2026-05-28T12:03:15.000000Z"
+      }
+    },
+    "/api/comments?project_id=72": {
+      "data": []
+    },
+    "/api/blogs/building-a-portfolio-with-nextjs-laravel": {
+      "data": {
+        "id": 1,
+        "title": "Building a Portfolio with Next.js & Laravel",
+        "slug": "building-a-portfolio-with-nextjs-laravel",
+        "excerpt": "A walkthrough of how this portfolio platform is built.",
+        "content": "## Introduction\n\nThis post walks through the architecture of the portfolio platform: Next.js on the frontend, Laravel API on the backend, Supabase for Postgres + storage.\n\n### Why this stack?\n\n- Type-safe end-to-end\n- Fast DX\n- Free hosting tiers\n",
+        "cover_image_url": null,
+        "tags": [
+          "nextjs",
+          "laravel",
+          "supabase"
+        ],
+        "is_published": true,
+        "published_at": "2026-05-27T03:53:45.000000Z",
+        "created_at": "2026-05-26T06:33:35.000000Z",
+        "updated_at": "2026-05-27T03:53:45.000000Z"
+      }
+    },
+    "/api/blogs/sanctum-spa-cookie-auth-the-right-way": {
+      "data": {
+        "id": 2,
+        "title": "Sanctum SPA Cookie Auth, the Right Way",
+        "slug": "sanctum-spa-cookie-auth-the-right-way",
+        "excerpt": "Configure CORS + Sanctum so Next.js can call your Laravel API safely.",
+        "content": "Sanctum SPA cookie auth depends on three things being aligned: stateful domains, CORS with credentials, and the CSRF cookie.\n",
+        "cover_image_url": null,
+        "tags": [
+          "laravel",
+          "sanctum",
+          "auth"
+        ],
+        "is_published": true,
+        "published_at": "2026-05-24T03:53:45.000000Z",
+        "created_at": "2026-05-26T06:33:36.000000Z",
+        "updated_at": "2026-05-27T03:53:45.000000Z"
+      }
+    }
+  }
+}

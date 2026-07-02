@@ -1,9 +1,10 @@
 'use client';
 
 import { useState } from 'react';
-import { apiClient, ApiError } from '@/lib/api';
+import { apiClient, ApiError, isBackendDownError } from '@/lib/api';
 import { Field, Input, Textarea } from '@/components/Field';
 import { Spinner } from '@/components/Loading';
+import { FeatureInDevelopmentModal } from '@/components/FeatureInDevelopmentModal';
 
 interface Props {
   projectId?: number;
@@ -16,6 +17,7 @@ export function CommentForm({ projectId, title = 'Leave a testimonial', hint }: 
   const [status, setStatus] = useState<'idle' | 'submitting' | 'success' | 'error'>('idle');
   const [error, setError] = useState<string | null>(null);
   const [fieldErrors, setFieldErrors] = useState<Record<string, string[]>>({});
+  const [devModalOpen, setDevModalOpen] = useState(false);
 
   function set<K extends keyof typeof form>(k: K, v: (typeof form)[K]) {
     setForm((f) => ({ ...f, [k]: v }));
@@ -37,6 +39,12 @@ export function CommentForm({ projectId, title = 'Leave a testimonial', hint }: 
       setStatus('success');
       setForm({ name: '', email: '', message: '', rating: 5 });
     } catch (err) {
+      // Backend unreachable → serverless fallback: this write can't be processed.
+      if (isBackendDownError(err)) {
+        setStatus('idle');
+        setDevModalOpen(true);
+        return;
+      }
       setStatus('error');
       if (err instanceof ApiError) {
         setError(err.message);
@@ -49,6 +57,8 @@ export function CommentForm({ projectId, title = 'Leave a testimonial', hint }: 
   }
 
   return (
+    <>
+    <FeatureInDevelopmentModal open={devModalOpen} onClose={() => setDevModalOpen(false)} action="Submitting comments" />
     <form onSubmit={onSubmit} className="card" noValidate>
       <h2 className="text-lg font-semibold tracking-tight">{title}</h2>
       {hint && <p className="mt-1 text-xs muted-2">{hint}</p>}
@@ -100,5 +110,6 @@ export function CommentForm({ projectId, title = 'Leave a testimonial', hint }: 
         {status === 'submitting' ? 'Submitting…' : 'Submit'}
       </button>
     </form>
+    </>
   );
 }

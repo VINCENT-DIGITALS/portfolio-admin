@@ -1,3 +1,5 @@
+import { getSnapshot } from './snapshot';
+
 export const API_URL = process.env.NEXT_PUBLIC_API_URL ?? 'http://localhost:8000';
 const AUTH_TOKEN_KEY = 'portfolio_admin_token';
 export const AUTH_EXPIRED_EVENT = 'portfolio-admin-auth-expired';
@@ -99,6 +101,24 @@ function safeParse(text: string): unknown {
   try { return JSON.parse(text); } catch { return text; }
 }
 
+/**
+ * Whether an error thrown by a submission (POST/PUT/…) means the backend is
+ * effectively down — i.e. the write could not be processed at all. Used by
+ * public forms to show the "feature in development" modal instead of a normal
+ * validation/error message.
+ *
+ * Treats as "down": network/CORS failures (fetch rejects, not an ApiError),
+ * and server-side outages (502/503/504) or generic 500s. A 4xx (validation,
+ * conflict, etc.) is a real API response and is NOT considered down.
+ */
+export function isBackendDownError(err: unknown): boolean {
+  if (err instanceof ApiError) {
+    return err.status === 0 || err.status === 500 || err.status === 502 || err.status === 503 || err.status === 504;
+  }
+  // A raw fetch rejection (TypeError: Failed to fetch) means no response at all.
+  return err instanceof TypeError;
+}
+
 export const apiClient = {
   get: <T>(path: string, opts?: RequestOptions) => api<T>(path, { ...opts, method: 'GET' }),
   post: <T>(path: string, body?: unknown, opts?: RequestOptions) => api<T>(path, { ...opts, method: 'POST', body }),
@@ -107,14 +127,21 @@ export const apiClient = {
   delete: <T>(path: string, opts?: RequestOptions) => api<T>(path, { ...opts, method: 'DELETE' }),
 };
 
-/** SSR-friendly fetcher: ISR cache by default. */
+/**
+ * SSR-friendly fetcher: ISR cache by default.
+ *
+ * Serverless fallback: if the live backend is unreachable or errors, fall back
+ * to the baked snapshot (real DB data captured at build time) so the public
+ * portfolio still renders actual content instead of empty placeholders.
+ * Returns null only when there is no snapshot entry for the path either.
+ */
 export async function ssrFetch<T>(path: string, revalidate = 60): Promise<T | null> {
   const url = toApiUrl(path);
   try {
     const res = await fetch(url, { next: { revalidate }, headers: { Accept: 'application/json' } });
-    if (!res.ok) return null;
+    if (!res.ok) return getSnapshot<T>(path);
     return (await res.json()) as T;
   } catch {
-    return null;
+    return getSnapshot<T>(path);
   }
 }

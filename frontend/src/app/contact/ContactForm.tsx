@@ -1,15 +1,17 @@
 'use client';
 
 import { useState } from 'react';
-import { apiClient, ApiError } from '@/lib/api';
+import { apiClient, ApiError, isBackendDownError } from '@/lib/api';
 import { Field, Input, Textarea } from '@/components/Field';
 import { Spinner } from '@/components/Loading';
+import { FeatureInDevelopmentModal } from '@/components/FeatureInDevelopmentModal';
 
 export function ContactForm() {
   const [form, setForm] = useState({ name: '', email: '', subject: '', message: '' });
   const [status, setStatus] = useState<'idle' | 'submitting' | 'success' | 'error'>('idle');
   const [error, setError] = useState<string | null>(null);
   const [fieldErrors, setFieldErrors] = useState<Record<string, string[]>>({});
+  const [devModalOpen, setDevModalOpen] = useState(false);
 
   const onChange = (k: keyof typeof form) => (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) =>
     setForm((f) => ({ ...f, [k]: e.target.value }));
@@ -22,6 +24,12 @@ export function ContactForm() {
       setStatus('success');
       setForm({ name: '', email: '', subject: '', message: '' });
     } catch (err) {
+      // Backend unreachable → serverless fallback: this write can't be processed.
+      if (isBackendDownError(err)) {
+        setStatus('idle');
+        setDevModalOpen(true);
+        return;
+      }
       setStatus('error');
       if (err instanceof ApiError) {
         setError(err.message);
@@ -34,6 +42,8 @@ export function ContactForm() {
   }
 
   return (
+    <>
+    <FeatureInDevelopmentModal open={devModalOpen} onClose={() => setDevModalOpen(false)} action="Sending messages" />
     <form onSubmit={onSubmit} className="card" noValidate>
       <h2 className="text-lg font-semibold tracking-tight">Send a message</h2>
       <p className="mt-1 text-xs muted-2">Replies usually within 1–3 days.</p>
@@ -69,5 +79,6 @@ export function ContactForm() {
         {status === 'submitting' ? 'Sending…' : 'Send message'}
       </button>
     </form>
+    </>
   );
 }
